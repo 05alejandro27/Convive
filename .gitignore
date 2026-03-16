@@ -1,0 +1,27 @@
+# Variables de entorno
+.env
+
+# Java / Maven
+backend/target/
+*.class
+*.jar
+*.war
+*.log
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.zed/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
