@@ -1,0 +1,104 @@
+.page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fdf6f6;
+    padding: 20px;
+}
+
+.card {
+    width: 100%;
+    max-width: 360px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #656e95;
+    margin: 0 0 4px;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: #888;
+    margin: 0 0 32px;
+    text-align: center;
+}
+
+.globalError {
+    background-color: #fdecea;
+    color: #c62828;
+    font-size: 0.84rem;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+.row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-bottom: 16px;
+}
+
+.row .field {
+    margin-bottom: 0;
+}
+
+.field label {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.field input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background-color: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.field input:focus {
+    border-color: #656e95;
+}
+
+.fieldError {
+    font-size: 0.78rem;
+    color: #c62828;
+    margin-top: 4px;
+}
+
+.button {
+    width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 6px;
+    background-color: #656e95;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.button:hover {
+    background-color: #e8a0a0;
+}
+
+.button:disabled {
+    opacity: 0.5;
+}
