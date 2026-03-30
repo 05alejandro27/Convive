@@ -49,7 +49,7 @@ public class SecurityConfig {
         //Le asignamos la URL que tiene permiso para hacer peticiones
         configuration.setAllowedOrigins(List.of("http://localhost:5173"));
         //Definimos que metodos se permiten
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         //Permito cualquier cabecera HTTP en las peticiones
         configuration.setAllowedHeaders(List.of("*"));
         //Creo un objeto para asociar las reglas del CORS a rutas concretas de la API
