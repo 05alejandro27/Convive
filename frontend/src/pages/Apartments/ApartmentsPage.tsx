@@ -8,10 +8,10 @@ import { ApartmentTable } from './components/ApartmentTable';
 import styles from './ApartmentsPage.module.css';
 
 export const ApartmentsPage = () => {
-    const { communityId } = useParams<{ communityId: string }>();
+    const {communityId} = useParams<{communityId: string}>();
     const navigate = useNavigate();
 
-    // Estado
+    //Estado
     const [apartments, setApartments] = useState<ApartmentResponse[]>([]);
     const [allApartments, setAllApartments] = useState<ApartmentResponse[]>([]);
     const [stats, setStats] = useState<ApartmentStatsResponse | null>(null);
@@ -30,7 +30,7 @@ export const ApartmentsPage = () => {
                 const id = Number(communityId);
                 const apartmentsData = await apartmentService.findAll(id); //Sin filtros
                 const statsData = await apartmentService.getStats(id);
-                setAllApartments(apartmentsData); //Guardas el array completo
+                setAllApartments(apartmentsData); //Guardo el array completo
                 setApartments(apartmentsData);    //También el que se muestra
                 const floors = [...new Set(apartmentsData.map((a) => a.floor))].sort((a, b) => a - b);
                 setAllFloors(floors);
@@ -56,7 +56,6 @@ export const ApartmentsPage = () => {
         setApartments(filtered);
     }, [filterStatus, filterFloor, allApartments]);
 
-
     //Toggle activar/desactivar
     const handleToggleActive = async (apartmentId: number) => {
         try {
@@ -75,7 +74,7 @@ export const ApartmentsPage = () => {
         }
     };
 
-    if(loading) {
+    if (loading) {
         return <p className={styles.loading}>Cargando...</p>
     }
 

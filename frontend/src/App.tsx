@@ -4,6 +4,8 @@ import { HomePage } from './pages/Home/HomePage';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
 import { ApartmentsPage } from './pages/Apartments/ApartmentsPage';
 import { ApartmentFormPage } from './pages/Apartments/ApartmentFormPage';
+import { UsersPage } from './pages/Users/UsersPage';
+import { UserFormPage } from './pages/Users/UserFormPage';
 
 function App() {
     return (
@@ -18,8 +20,10 @@ function App() {
                 {/**Ruta para el home*/}
                 <Route path="/home/:communityId" element={<HomePage />} />
                 <Route path="/apartments/:communityId" element={<ApartmentsPage/>} />
-                <Route path="/apartments/:communityId/create" element={<ApartmentFormPage />} />
-                <Route path="/apartments/:communityId/edit/:id" element={<ApartmentFormPage />} />
+                <Route path="/apartments/:communityId/create" element={<ApartmentFormPage/>} />
+                <Route path="/apartments/:communityId/edit/:id" element={<ApartmentFormPage/>} />
+                <Route path="/users/:communityId" element={<UsersPage/>} />
+                <Route path="/users/:communityId/edit/:id" element={<UserFormPage/>} />
             </Route>
 
             <Route path="*" element={<Navigate to="/login/1" replace />} />

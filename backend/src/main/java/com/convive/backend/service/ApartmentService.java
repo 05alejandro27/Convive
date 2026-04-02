@@ -54,7 +54,7 @@ public class ApartmentService {
         List<Apartment> apartments = apartmentRepository.findByCommunityId(communityId);
 
         List<ApartmentResponse> responses = apartments.stream()
-                .map(this::buildResponse)
+                .map(apartment -> this.buildResponse(apartment))
                 .toList();
 
         return responses;
@@ -82,9 +82,9 @@ public class ApartmentService {
         apartment.setCreatedDate(LocalDateTime.now());
         apartment.setUpdatedDate(LocalDateTime.now());
 
-        Apartment saved = apartmentRepository.save(apartment);
+        Apartment apartmentCreate = apartmentRepository.save(apartment);
 
-        return buildResponse(saved);
+        return buildResponse(apartmentCreate);
     }
 
     //Editar un piso
@@ -98,10 +98,8 @@ public class ApartmentService {
         boolean floorChanged = !apartment.getFloor().equals(request.floor());
         boolean doorChanged = !apartment.getDoor().equals(request.door());
 
-        if ((floorChanged || doorChanged)
-                && apartmentRepository.existsByCommunityIdAndFloorAndDoor(communityId, request.floor(), request.door())) {
-            throw new DuplicateResourceException(
-                    "Ya existe un piso en la planta " + request.floor() + " puerta " + request.door());
+        if ((floorChanged || doorChanged) && apartmentRepository.existsByCommunityIdAndFloorAndDoor(communityId, request.floor(), request.door())) {
+            throw new DuplicateResourceException("Ya existe un piso en la planta " + request.floor() + " puerta " + request.door());
         }
 
         //Actualiza los campos
@@ -109,14 +107,15 @@ public class ApartmentService {
         apartment.setDoor(request.door());
         apartment.setUpdatedDate(LocalDateTime.now());
 
-        Apartment saved = apartmentRepository.save(apartment);
+        Apartment apartmentEdit = apartmentRepository.save(apartment);
 
-        return buildResponse(saved);
+        return buildResponse(apartmentEdit);
     }
 
     //Activar o desactivar un piso
     public ApartmentResponse toggleActive(Long communityId, Long apartmentId) {
 
+        //Buscar el piso asegurándonos de que pertenece a esa comunidad
         Apartment apartment = apartmentRepository.findByIdAndCommunityId(apartmentId, communityId)
                 .orElseThrow(() -> new ResourceNotFoundException("Piso no encontrado"));
 

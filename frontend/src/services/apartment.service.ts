@@ -2,7 +2,7 @@ import api from './api';
 
 export const apartmentService = {
 
-    //Listar pisos con filtros opcionales
+    //Listar todos los pisos
     findAll: async (communityId: number): Promise<ApartmentResponse[]> => {
         const response = await api.get<ApartmentResponse[]>(`/apartments/${communityId}`);
         return response.data;
@@ -16,7 +16,7 @@ export const apartmentService = {
         return response.data;
     },
 
-    //Crear piso
+    //Crear un piso
     create: async (communityId: number, data: ApartmentRequest): Promise<ApartmentResponse> => {
         const response = await api.post<ApartmentResponse>(
             `/apartments/${communityId}`,
@@ -25,7 +25,7 @@ export const apartmentService = {
         return response.data;
     },
 
-    //Editar piso
+    //Editar un piso
     edit: async (communityId: number, id: number, data: ApartmentRequest): Promise<ApartmentResponse> => {
         const response = await api.put<ApartmentResponse>(
             `/apartments/${communityId}/${id}`,
@@ -34,13 +34,11 @@ export const apartmentService = {
         return response.data;
     },
 
-    //Activar/Desactivar piso
+    //Activar/Desactivar un piso
     toggleActive: async (communityId: number, id: number): Promise<ApartmentResponse> => {
-        const response = await api.patch<ApartmentResponse>(
-            `/apartments/${communityId}/${id}/toggle-active`
-        );
+        const response = await api.patch<ApartmentResponse>(`/apartments/${communityId}/${id}/toggle-active`);
         return response.data;
-    },
+    }
 };
 
 //Tipos

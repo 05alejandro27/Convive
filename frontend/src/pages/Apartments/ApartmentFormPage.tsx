@@ -23,7 +23,7 @@ export const ApartmentFormPage = () => {
     const { communityId, id } = useParams<{ communityId: string; id: string }>();
     const navigate = useNavigate();
 
-    //Si hay id en la URL, estamos editando; si no, creando
+    //Si hay id en la URL, estamos editando, si no, creando
     const isEditing = Boolean(id);
 
     const [globalError, setGlobalError] = useState<string | null>(null);
@@ -79,7 +79,9 @@ export const ApartmentFormPage = () => {
         }
     };
 
-    if (loading) return <p className={styles.loading}>Cargando...</p>;
+    if (loading) {
+        return <p className={styles.loading}>Cargando...</p>
+    };
 
     return (
         <div className={styles.container}>
@@ -96,9 +98,9 @@ export const ApartmentFormPage = () => {
                         <p className={styles.error}>{globalError}</p>
                     )}
 
-                    {/*Planta y Puerta en la misma fila*/}
+                    {/*Planta y puerta en la misma fila*/}
                     <div className={styles.row}>
-                        {/*Campo Planta*/}
+                        {/*Campo planta*/}
                         <div className={styles.field}>
                             <label htmlFor="floor" className={styles.label}>
                                 Planta
@@ -121,7 +123,7 @@ export const ApartmentFormPage = () => {
                             )}
                         </div>
 
-                        {/*Campo Puerta*/}
+                        {/*Campo puerta*/}
                         <div className={styles.field}>
                             <label htmlFor="door" className={styles.label}>
                                 Puerta

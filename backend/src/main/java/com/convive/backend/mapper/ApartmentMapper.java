@@ -5,7 +5,7 @@ import com.convive.backend.model.entity.Apartment;
 import org.springframework.stereotype.Component;
 
 @Component
-//Aunque podríamos hacerlo en en Service he decidido separarlo para que el Service se encarge de la lóica de negocio y mapper de transformar datos
+//Aunque podríamos hacerlo en en Service he decidido separarlo para que el Service se encarge de la lóica de negocio y el mapper de transformar datos
 public class ApartmentMapper {
 
     //Convierte la entidad Apartment a ApartmentResponse (DTO)

@@ -30,7 +30,7 @@ public class JwtService {
 
         //Añade el id de la comunidad al token
         extraClaims.put("communityId", communityId);
-        //Añade el rol del usuario al token
+        //Añade el role del usuario al token
         extraClaims.put("role", user.getRole().name());
 
         //Empieza a construir el token usando el patron builder
