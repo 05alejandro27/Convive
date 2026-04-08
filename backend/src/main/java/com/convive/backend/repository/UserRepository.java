@@ -23,7 +23,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT COUNT(u) > 0 FROM User u WHERE u.email = :email AND u.id <> :excludeId")
     boolean existsByEmailExcludingId(@Param("email") String email, @Param("excludeId") Long excludeId);
 
+    @Query("SELECT COUNT(u) > 0 FROM User u WHERE u.email = :email")
+    boolean existsByEmail(@Param("email") String email);
+
     @Query("SELECT COUNT(u) > 0 FROM User u WHERE u.phone = :phone AND u.id <> :excludeId")
     boolean existsByPhoneExcludingId(@Param("phone") String phone, @Param("excludeId") Long excludeId);
+
+    @Query("SELECT COUNT(u) > 0 FROM User u WHERE u.phone = :phone")
+    boolean existsByPhone(@Param("phone") String phone);
 
 }

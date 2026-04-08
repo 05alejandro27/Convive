@@ -21,6 +21,10 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Long> {
     @Query("SELECT COUNT(a) > 0 FROM Apartment a WHERE a.community.id = :communityId AND a.floor = :floor AND a.door = :door")
     boolean existsByCommunityIdAndFloorAndDoor(@Param("communityId") Long communityId, @Param("floor") Integer floor, @Param("door") String door);
 
+    //Encuentra un piso con esa planta y puerta en la comunidad
+    @Query("SELECT a FROM Apartment a WHERE a.community.id = :communityId AND a.floor = :floor AND a.door = :door")
+    Optional<Apartment> findByCommunityIdAndFloorAndDoor(@Param("communityId") Long communityId, @Param("floor") Integer floor, @Param("door") String door);
+
     //Cuenta el total de pisos de una comunidad (para las estadísticas)
     @Query("SELECT COUNT(a) FROM Apartment a WHERE a.community.id = :communityId")
     long countByCommunityId(@Param("communityId") Long communityId);

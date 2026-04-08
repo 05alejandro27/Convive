@@ -51,7 +51,6 @@ public class JwtService {
 
     //Es el metodo para firmar
     private Key getSignInKey() {
-
         //Descodifica el codigo secreto en un formato valido para el algoritmo de firmado
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         //Devuelve la clave de tipo HMAC-SHA

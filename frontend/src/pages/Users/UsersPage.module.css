@@ -84,6 +84,21 @@ Al ser tablas muy largas necesitaria un scroll vertical por ahora no lo aplicamo
     white-space: nowrap;
 }
 
+.btnCreate {
+    padding: 10px 20px;
+    background-color: #656e95;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btnCreate:hover {
+    background-color: #e8a0a0;
+}
+
 .btnEdit {
     padding: 6px 14px;
     background: #fff;
@@ -142,4 +157,43 @@ Al ser tablas muy largas necesitaria un scroll vertical por ahora no lo aplicamo
     padding: 10px 14px;
     border-radius: 6px;
     margin-bottom: 1rem;
+}
+
+.invitationHeader {
+    margin-top: 3rem;
+}
+
+.invitationList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.invitationCard {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.invitationCode {
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: monospace;
+    color: #656e95;
+    letter-spacing: 2px;
+}
+
+.invitationInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.85rem;
+    color: #666;
 }

@@ -13,6 +13,10 @@ public interface UserApartmentRepository extends JpaRepository<UserApartment, Lo
     @Query("SELECT ua FROM UserApartment ua WHERE ua.apartment.id = :apartmentId")
     Optional<UserApartment> findByApartmentId(@Param("apartmentId") Long apartmentId);
 
+    //Verifica si el apartamento esta en uso
+    @Query("SELECT COUNT(ua) > 0 FROM UserApartment ua WHERE ua.apartment.id = :apartmentId AND ua.user.enabled = true AND ua.apartment.active = true")
+    boolean isOccupiedByApartmentId(@Param("apartmentId") Long apartmentId);
+
     @Query("SELECT ua FROM UserApartment ua WHERE ua.user.id = :userId")
     Optional<UserApartment> findByUserId(@Param("userId") Long userId);
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -22,16 +22,18 @@ const schema = yup.object({
 }).required();
 
 export const LoginPage = () => {
-    const { communityId } = useParams<{ communityId: string }>();
+    const navigate = useNavigate();
+    const { communityId } = useParams<{communityId: string}>();
     const { login } = useAuth();
     const [globalError, setGlobalError] = useState<string | null>(null);
+    
     const {
         register,
         handleSubmit,
-        formState: { errors, isSubmitting },
+        formState: { errors, isSubmitting }
     } = useForm<LoginFormData>({
         resolver: yupResolver(schema),
-        mode: 'onBlur',
+        mode: 'onBlur'
     });
 
     const onSubmit = async (data: LoginFormData) => {
@@ -115,8 +117,15 @@ export const LoginPage = () => {
                     <button type="submit" className={styles.button} disabled={isSubmitting}>
                         Entrar
                     </button>
-
+                    
                 </form>
+
+                <div className={styles.registerLink}>
+                    <span>¿No tienes cuenta?</span>
+                    <button onClick={() => navigate(`/register/${communityId}`)}>
+                        Registrarse
+                    </button>
+                </div>
             </div>
         </div>
     );

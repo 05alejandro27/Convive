@@ -7,7 +7,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -23,9 +22,6 @@ public class UserController {
     public ResponseEntity<List<UserResponse>> findAll(@PathVariable Long communityId) {
         return ResponseEntity.ok(userService.findAllByCommunityId(communityId));
     }
-
-    //POST
-    //Crear un nuevo usuario
 
     //PUT
     //Edita los valores de un usuario

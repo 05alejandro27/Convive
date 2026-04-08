@@ -10,7 +10,7 @@
 
 .card {
     width: 100%;
-    max-width: 360px;
+    max-width: 460px;
 }
 
 .logo {
@@ -101,16 +101,17 @@
 
 .button:disabled {
     opacity: 0.5;
+    cursor: not-allowed;
 }
 
-.registerLink {
+.loginLink {
     text-align: center;
     margin-top: 24px;
     font-size: 0.85rem;
     color: #888;
 }
 
-.registerLink button {
+.loginLink button {
     background: none;
     border: none;
     color: #656e95;
@@ -120,6 +121,6 @@
     margin-left: 4px;
 }
 
-.registerLink button:hover {
+.loginLink button:hover {
     text-decoration: underline;
 }

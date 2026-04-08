@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import type { UserResponse } from '../../../services/user.service'
+import type { UserResponse } from '../../../services/user.service';
 import styles from '../UsersPage.module.css';
 
+//Traducir y formatear el rol de los integrantes de la comunidad
 const roleLabel = (role: string) => {
     switch (role) {
         case 'PRESIDENT':
@@ -26,7 +27,6 @@ const fullName = (user: UserResponse) => {
     }
     return parts.join(' ');
 };
-
 
 export const UserTable = ({ users, communityId, onToggleEnable }: Props) => {
     const navigate = useNavigate();

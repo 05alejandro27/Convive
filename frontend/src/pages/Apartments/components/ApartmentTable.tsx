@@ -69,14 +69,6 @@ export const ApartmentTable = ({ apartments, communityId, onToggleActive }: Prop
                                 >
                                     {apt.active ? 'Desactivar' : 'Activar'}
                                 </button>
-
-                                <button
-                                    className={`${styles.btnInvite} ${apt.status !== 'EMPTY' ? styles.btnHidden : ''}`}
-                                    onClick={() => navigate(`/users/${communityId}/invite`)}
-                                    disabled={apt.status !== 'EMPTY'}
-                                >
-                                    Generar invitación
-                                </button>
                             </td>
                         </tr>
                     ))}

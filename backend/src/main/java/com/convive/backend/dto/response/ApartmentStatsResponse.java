@@ -4,9 +4,9 @@ package com.convive.backend.dto.response;
 //Se encarga de enviar las estadísticas de los pisos (Cuantos hay en total, cuantos ocupados, cuantos vacios y cuántos inactivos).
 public record ApartmentStatsResponse(
 
-        long total,
-        long occupied,
-        long empty,
-        long inactive
+        Long total,
+        Long occupied,
+        Long empty,
+        Long inactive
 
 ) {}

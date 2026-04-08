@@ -28,8 +28,7 @@ public class UserService {
     //Lógica de negocio
     private UserResponse buildResponse(User user) {
 
-        String apartment = userApartmentRepository
-                .findByUserId(user.getId())
+        String apartment = userApartmentRepository.findByUserId(user.getId())
                 .map(ua -> ua.getApartment().getFloor() + ua.getApartment().getDoor())
                 .orElse(null);
 
@@ -46,24 +45,17 @@ public class UserService {
                 .toList();
     }
 
-    //Metodo de creación de usuarios, todavía no se usa hasta crear las invitaciones
-    public UserResponse createUser(Long communityId, UserRequest request) {
-
-        return null;
-    }
-
     //Editar un usuario
     public UserResponse editUser(Long communityId, Long userId, UserRequest request) {
 
         //Buscar el usuario asegurándonos de que pertenece a esa comunidad
         User user = userRepository.findByIdAndCommunityId(communityId, userId)
-                //Nueva excepcion
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
 
         //Si cambió el email, verificar que no esté en uso por otro usuario
         if (!user.getEmail().equals(request.email())
                 && userRepository.existsByEmailExcludingId(request.email(), userId)) {
-            throw new DuplicateResourceException("Ya existe un usuario con ese email");
+            throw new DuplicateResourceException("Ya existe un usuario con ese correo");
         }
 
         //Si cambió el teléfono, verificar que no esté en uso por otro usuario
@@ -90,7 +82,6 @@ public class UserService {
 
         //Buscar el usuario asegurándonos de que pertenece a esa comunidad
         User user = userRepository.findByIdAndCommunityId(communityId, userId)
-                //Nueva excepcion
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
 
         if (user.getRole().equals(PRESIDENT)) {

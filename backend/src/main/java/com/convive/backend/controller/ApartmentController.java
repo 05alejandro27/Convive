@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 //Genera un constructor con todos los atributos final
 @RequiredArgsConstructor
-//DEfino la ruta base para todos los ENDPOINTS del controlador
+//Defino la ruta base para todos los ENDPOINTS del controlador
 @RequestMapping("/api/apartments")
 public class ApartmentController {
 
@@ -40,7 +40,6 @@ public class ApartmentController {
     //Crea un nuevo piso
     @PostMapping("/{communityId}")
     public ResponseEntity<ApartmentResponse> create(@PathVariable Long communityId, @Valid @RequestBody ApartmentRequest request) {
-
         ApartmentResponse response = apartmentService.createApartment(communityId, request);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
