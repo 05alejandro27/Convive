@@ -1,14 +1,17 @@
 package com.convive.backend.config;
 
+import com.convive.backend.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -22,6 +25,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
     @Bean
     //Recibimos HttpSecurity de Spring y lo configuramos
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -30,12 +35,36 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 //Activamos CORS y le inyecto las reglas
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                //Permitimos que cualquier petición entre, configuración temporal para desarrollo
+                //Protegemos las rutas para que obligatoriamente tengas que estar logeado y también protegemos las rutas a las que solo pueda acceder el presidente.
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()
+
+                        //Públicos
+                        .requestMatchers("/api/auth/**").permitAll()
+
+                        //Pisos (Presidente)
+                        .requestMatchers("/api/apartments/**").hasRole("PRESIDENT")
+
+                        //Usuarios (Presidente)
+                        .requestMatchers("/api/users/**").hasRole("PRESIDENT")
+
+                        //Invitaciones (Presidente)
+                        .requestMatchers("/api/invitations/**").hasRole("PRESIDENT")
+
+                        //Presupuesto. Lectura para todos y escritura solo presidente
+                        .requestMatchers(HttpMethod.GET, "/api/budget/**").authenticated()
+                        .requestMatchers("/api/budget/**").hasRole("PRESIDENT")
+
+                        //Gastos. Lectura para todos y escritura solo presidente
+                        .requestMatchers(HttpMethod.GET, "/api/expenses/**").authenticated()
+                        .requestMatchers("/api/expenses/**").hasRole("PRESIDENT")
+
+                        //El resto requiere autenticación
+                        .anyRequest().authenticated()
                 )
                 //No mantengo las peticiones entre sesiones, ya que uso JWT (Tokens)
-                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                //Ejecuta el filtro JWT antes de evaluar las reglas de acceso
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         //Devuelvo las cadena con todos los filtros de seguridad creados
         return http.build();

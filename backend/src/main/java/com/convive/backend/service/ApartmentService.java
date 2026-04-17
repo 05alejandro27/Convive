@@ -69,8 +69,7 @@ public class ApartmentService {
 
         //Verificar que no exista ya un piso con esa planta y puerta en la comunidad
         if (apartmentRepository.existsByCommunityIdAndFloorAndDoor(communityId, request.floor(), request.door())) {
-            throw new DuplicateResourceException(
-                    "Ya existe un piso en la planta " + request.floor() + " puerta " + request.door());
+            throw new DuplicateResourceException("Ya existe un piso en la planta " + request.floor() + " puerta " + request.door());
         }
 
         //Crear la entidad y guardarla
