@@ -1,0 +1,103 @@
+.navbar {
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.inner {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.brand {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.brand:hover {
+    color: #656e95;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex: 1;
+}
+
+.link {
+    background: none;
+    border: none;
+    font-size: 0.95rem;
+    color: #555;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.link:hover {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.active {
+    color: #333;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.roleBadge {
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid #e0e0e0;
+}
+
+.rolePresident {
+    background-color: #f7cac9;
+    color: #333;
+    border-color: #e8a0a0;
+}
+
+.roleResident {
+    background-color: #f5f5f5;
+    color: #666;
+}
+
+.btnLogout {
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    color: #c62828;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.btnLogout:hover {
+    background-color: #fdecea;
+}

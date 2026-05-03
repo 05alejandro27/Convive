@@ -8,10 +8,16 @@ backend/target/
 *.war
 *.log
 
+# Spring Boot - Perfil de desarrollo local (credenciales)
+backend/src/main/resources/application-dev.properties
+
 # Node
 frontend/node_modules/
 frontend/dist/
 frontend/.env.local
+
+# Base de datos - Backups (pueden contener datos sensibles)
+database/backups/*.sql
 
 # IDEs
 .idea/

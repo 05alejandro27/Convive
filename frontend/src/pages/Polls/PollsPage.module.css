@@ -1,0 +1,150 @@
+.container {
+    max-width: 1800px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.btnCreate {
+    padding: 10px 20px;
+    background-color: #656e95;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btnCreate:hover {
+    background-color: #e8a0a0;
+}
+
+.loading {
+    text-align: center;
+    color: #999;
+    padding: 3rem;
+    font-size: 0.95rem;
+}
+
+.error {
+    background-color: #fdecea;
+    color: #c62828;
+    font-size: 0.9rem;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.empty {
+    text-align: center;
+    color: #999;
+    padding: 3rem;
+    font-size: 0.95rem;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.pollCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #f0f0f0;
+    background: #fff;
+}
+
+.pollCard:last-child {
+    border-bottom: none;
+}
+
+.pollCardClosed {
+    background: #fafafa;
+}
+
+.pollInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.pollTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.pollCardClosed .pollTitle {
+    color: #999;
+}
+
+.pollMeta {
+    display: flex;
+    gap: 1.2rem;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.pollActions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid #e0e0e0;
+}
+
+.badgeOPEN {
+    background-color: #f0faf0;
+    color: #2e7d32;
+    border-color: #c8e6c9;
+}
+
+.badgeCLOSED {
+    background-color: #f5f5f5;
+    color: #999;
+    border-color: #e0e0e0;
+}
+
+.btnDetail {
+    padding: 7px 16px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.btnDetail:hover {
+    border-color: #656e95;
+    color: #656e95;
+}

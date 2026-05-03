@@ -7,6 +7,7 @@ import type { ExpenseResponse } from '../../services/expenses.service';
 import { ExpenseFilters } from '../Budget/components/ExpenseFilters';
 import { ExpenseTable } from './components/ExpenseTable';
 import { BudgetStats } from '../Budget/components/BudgetStats';
+import { getRole } from '../../utils/getRole';
 import styles from './ExpensesPage.module.css';
 
 const MONTH_NAMES = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
@@ -27,6 +28,8 @@ export const ExpensesPage = () => {
     const [filterType, setFilterType] = useState<string>('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+    const isPresident = getRole() === 'PRESIDENT';
 
     useEffect(() => {
         const loadData = async () => {
@@ -86,7 +89,7 @@ export const ExpensesPage = () => {
         <div className={styles.container}>
             <div className={styles.header}>
                 <h1 className={styles.title}>Gastos</h1>
-                {isOpen && (
+                {isPresident && isOpen && (
                     <button
                         className={styles.btnCreate}
                         onClick={() => navigate(`/expenses/${communityId}/${budgetId}/create`)}
@@ -121,7 +124,7 @@ export const ExpensesPage = () => {
                 expenses={expenses}
                 communityId={communityId!}
                 budgetId={budgetId!}
-                isOpen={isOpen}
+                isOpen={isOpen && isPresident}
                 onDelete={handleDelete}
             />
         </div>

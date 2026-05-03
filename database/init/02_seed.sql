@@ -1,38 +1,127 @@
-INSERT INTO "community" ("name", "address") VALUES
-('Montepinar', 'Calle Girasol 12, Sevilla');
+-- =============================================
+-- SEED DATA - Convive (Sprint 7 - Polls)
+-- Contraseña para todos los usuarios: 12345678
+-- =============================================
 
-INSERT INTO "apartment" ("community_id", "floor", "door") VALUES
-(1, 1, 'A'),
-(1, 1, 'B'),
-(1, 2, 'A'),
-(1, 2, 'B');
+-- Limpieza en orden inverso de dependencias
+DELETE FROM votes;
+DELETE FROM polls;
+DELETE FROM expenses;
+DELETE FROM budget;
+DELETE FROM invitations;
+DELETE FROM user_apartment;
+DELETE FROM users;
+DELETE FROM apartment;
+DELETE FROM community;
 
-INSERT INTO "users" ("first_name", "last_name_1", "last_name_2", "phone", "email", "password_hash", "enabled", "role") VALUES
-('María',     'González', 'López',    '600111222', 'maria@convive.com',     '$2a$10$J2IWUhkLInNPkzphzMOigOPk4wKa0VblSuZ0DJQ9yka/yPr1Z8DFe', TRUE, 'PRESIDENT'),
-('Alejandro', 'Peña',     'Fernández','600333444', 'alejandro@convive.com', '$2a$10$J2IWUhkLInNPkzphzMOigOPk4wKa0VblSuZ0DJQ9yka/yPr1Z8DFe', TRUE, 'RESIDENT'),
-('Carmen',    'Ruiz',     'Martínez', '600555666', 'carmen@convive.com',    '$2a$10$J2IWUhkLInNPkzphzMOigOPk4wKa0VblSuZ0DJQ9yka/yPr1Z8DFe', TRUE, 'RESIDENT');
+-- Reinicio de secuencias
+ALTER SEQUENCE community_id_seq RESTART WITH 1;
+ALTER SEQUENCE apartment_id_seq RESTART WITH 1;
+ALTER SEQUENCE users_id_seq RESTART WITH 1;
+ALTER SEQUENCE user_apartment_id_seq RESTART WITH 1;
+ALTER SEQUENCE invitations_id_seq RESTART WITH 1;
+ALTER SEQUENCE budget_id_seq RESTART WITH 1;
+ALTER SEQUENCE expenses_id_seq RESTART WITH 1;
+ALTER SEQUENCE polls_id_seq RESTART WITH 1;
+ALTER SEQUENCE votes_id_seq RESTART WITH 1;
 
-INSERT INTO "user_apartment" ("user_id", "apartment_id") VALUES
-(1, 1),
-(2, 3),
-(3, 4);
+-- =============================================
+-- COMUNIDAD
+-- =============================================
+INSERT INTO community (id, name, address, created_at, updated_at)
+VALUES (1, 'Comunidad Las Palmeras', 'Calle Las Palmeras 15, Sevilla', NOW(), NOW());
 
-INSERT INTO "budget" ("community_id", "name", "start_date", "end_date", "annual_amount", "emergency_fund", "status") VALUES
-(1, 'Presupuesto 2026', '2026-01-01', '2026-12-31', 24000.00, 3200.00, 'OPEN');
+-- =============================================
+-- PISOS (4 pisos activos)
+-- =============================================
+INSERT INTO apartment (id, community_id, floor, door, active, created_at, updated_at) VALUES
+(1, 1, 1, 'A', true, NOW(), NOW()),
+(2, 1, 1, 'B', true, NOW(), NOW()),
+(3, 1, 2, 'A', true, NOW(), NOW()),
+(4, 1, 2, 'B', true, NOW(), NOW());
 
-INSERT INTO "expenses" ("budget_id", "name", "description", "type", "cost", "month") VALUES
-(1, 'Seguro del edificio',     'Seguro anual Mapfre',         'FIXED',    450.00, 1),
-(1, 'Mantenimiento ascensor',  'Contrato Schindler mensual',  'FIXED',    150.00, 1),
-(1, 'Reparación gotera portal','Empresa Obras Sevilla S.L.',  'VARIABLE', 850.00, 2),
-(1, 'Pintura zonas comunes',   'Pintura escalera y portal',   'VARIABLE', 1400.00, 3);
+-- =============================================
+-- USUARIOS
+-- Contraseña: 12345678 (BCrypt)
+-- =============================================
+-- Presidente (id=1)
+INSERT INTO users (id, first_name, last_name_1, last_name_2, phone, email, password_hash, enabled, role, created_at, updated_at)
+VALUES (1, 'Carlos', 'García', 'López', '600111111', 'carlos@email.com',
+        '$2a$10$Z1DqIU/K9fWQ4dyZ.lDQMe1ECWuMCN6I4Jy/A7hV08dIQmVP8.5bW',
+        true, 'PRESIDENT', NOW(), NOW());
 
-INSERT INTO "polls" ("community_id", "title", "description", "creator_id", "status", "deadline") VALUES
-(1,
- 'Renovación del ascensor — Bloque A',
- 'Se propone la renovación completa del ascensor del bloque A con un presupuesto de 12.400€ a cargo del fondo de emergencias. Empresa: Ascensores Sevilla S.L. Plazo de obra: 3 semanas.',
- 1,
- 'OPEN',
- '2026-03-28 23:59:59');
+-- Vecino 1 (id=2)
+INSERT INTO users (id, first_name, last_name_1, last_name_2, phone, email, password_hash, enabled, role, created_at, updated_at)
+VALUES (2, 'María', 'Fernández', 'Ruiz', '600222222', 'maria@email.com',
+        '$2a$10$Z1DqIU/K9fWQ4dyZ.lDQMe1ECWuMCN6I4Jy/A7hV08dIQmVP8.5bW',
+        true, 'RESIDENT', NOW(), NOW());
 
-INSERT INTO "votes" ("poll_id", "user_id", "value") VALUES
-(1, 1, 'IN_FAVOR');
+-- Vecino 2 (id=3)
+INSERT INTO users (id, first_name, last_name_1, last_name_2, phone, email, password_hash, enabled, role, created_at, updated_at)
+VALUES (3, 'Pedro', 'Martínez', 'Sánchez', '600333333', 'pedro@email.com',
+        '$2a$10$Z1DqIU/K9fWQ4dyZ.lDQMe1ECWuMCN6I4Jy/A7hV08dIQmVP8.5bW',
+        true, 'RESIDENT', NOW(), NOW());
+
+-- Vecino 3 (id=4)
+INSERT INTO users (id, first_name, last_name_1, last_name_2, phone, email, password_hash, enabled, role, created_at, updated_at)
+VALUES (4, 'Ana', 'López', 'Torres', '600444444', 'ana@email.com',
+        '$2a$10$Z1DqIU/K9fWQ4dyZ.lDQMe1ECWuMCN6I4Jy/A7hV08dIQmVP8.5bW',
+        true, 'RESIDENT', NOW(), NOW());
+
+-- =============================================
+-- ASIGNACIONES PISO-USUARIO
+-- =============================================
+INSERT INTO user_apartment (id, user_id, apartment_id, assigned_at) VALUES
+(1, 1, 1, NOW()),  -- Carlos (presidente) → 1ºA
+(2, 2, 2, NOW()),  -- María → 1ºB
+(3, 3, 3, NOW()),  -- Pedro → 2ºA
+(4, 4, 4, NOW());  -- Ana → 2ºB
+
+-- =============================================
+-- PRESUPUESTO ABIERTO
+-- =============================================
+INSERT INTO budget (id, community_id, name, start_date, end_date, annual_amount, emergency_fund, status, created_at, updated_at)
+VALUES (1, 1, 'Presupuesto 2026', '2026-01-01', '2026-12-31', 12000.00, 1500.00, 'OPEN', NOW(), NOW());
+
+-- =============================================
+-- GASTOS
+-- =============================================
+INSERT INTO expenses (id, budget_id, name, description, type, cost, month, created_at, updated_at) VALUES
+(1, 1, 'Limpieza', 'Servicio mensual de limpieza', 'FIXED', 200.00, 1, NOW(), NOW()),
+(2, 1, 'Electricidad zonas comunes', 'Factura de luz', 'VARIABLE', 85.50, 1, NOW(), NOW()),
+(3, 1, 'Limpieza', 'Servicio mensual de limpieza', 'FIXED', 200.00, 2, NOW(), NOW()),
+(4, 1, 'Reparación ascensor', 'Cambio de cable', 'VARIABLE', 450.00, 2, NOW(), NOW());
+
+-- =============================================
+-- VOTACIONES
+-- =============================================
+
+-- Votación 1: ABIERTA con deadline futuro (para probar votación normal)
+INSERT INTO polls (id, community_id, title, description, creator_id, status, created_at, updated_at, deadline)
+VALUES (1, 1, 'Instalación de placas solares', 'Se propone instalar placas solares en la azotea para reducir el gasto eléctrico comunitario.',
+        1, 'OPEN', NOW(), NOW(), '2026-06-01 23:59:59');
+
+-- Votación 2: ABIERTA con deadline ya pasado (para probar cierre automático)
+INSERT INTO polls (id, community_id, title, description, creator_id, status, created_at, updated_at, deadline)
+VALUES (2, 1, 'Pintar la fachada', 'Se propone pintar la fachada del edificio durante el verano.',
+        1, 'OPEN', NOW(), NOW(), '2026-04-01 23:59:59');
+
+-- =============================================
+-- VOTOS (solo en la votación 2 para tener datos)
+-- =============================================
+INSERT INTO votes (id, poll_id, user_id, value, voted_at) VALUES
+(1, 2, 1, 'IN_FAVOR', NOW()),   -- Carlos vota a favor
+(2, 2, 2, 'IN_FAVOR', NOW()),   -- María vota a favor
+(3, 2, 3, 'AGAINST', NOW());    -- Pedro vota en contra
+-- Ana (id=4) no ha votado en la votación 2
+
+-- Actualizar secuencias al valor máximo usado
+SELECT setval('community_id_seq', 1);
+SELECT setval('apartment_id_seq', 4);
+SELECT setval('users_id_seq', 4);
+SELECT setval('user_apartment_id_seq', 4);
+SELECT setval('invitations_id_seq', 1);
+SELECT setval('budget_id_seq', 1);
+SELECT setval('expenses_id_seq', 4);
+SELECT setval('polls_id_seq', 2);
+SELECT setval('votes_id_seq', 3);

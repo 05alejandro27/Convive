@@ -58,6 +58,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/expenses/**").authenticated()
                         .requestMatchers("/api/expenses/**").hasRole("PRESIDENT")
 
+                        //Votaciones. Lectura para todos y escritura solo presidente, excepto votar que pueden los residentes
+                        .requestMatchers(HttpMethod.POST, "/api/polls/{communityId}/{pollId}/vote").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/polls/{communityId}").hasRole("PRESIDENT")
+                        .requestMatchers(HttpMethod.GET, "/api/polls/**").authenticated()
+
                         //El resto requiere autenticación
                         .anyRequest().authenticated()
                 )

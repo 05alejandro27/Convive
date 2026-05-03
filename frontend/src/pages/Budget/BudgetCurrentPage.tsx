@@ -5,6 +5,7 @@ import type { BudgetResponse, BudgetStatsResponse } from '../../services/budget.
 import { expenseService } from '../../services/expenses.service';
 import type { ExpenseResponse } from '../../services/expenses.service';
 import { BudgetStats } from './components/BudgetStats';
+import { getRole } from '../../utils/getRole';
 import styles from './BudgetPage.module.css';
 
 const formatDate = (date: string) => {
@@ -34,6 +35,8 @@ export const BudgetCurrentPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [noBudget, setNoBudget] = useState(false);
+
+    const isPresident = getRole() === 'PRESIDENT';
 
     useEffect(() => {
         const loadData = async () => {
@@ -105,13 +108,17 @@ export const BudgetCurrentPage = () => {
                 <div className={styles.emptyState}>
                     <h1 className={styles.title}>Presupuesto actual</h1>
                     <p>No hay ningún presupuesto activo en esta comunidad.</p>
-                    <p>Pulsa el botón para abrir uno nuevo.</p>
-                    <button
-                        className={styles.btnOpen}
-                        onClick={() => navigate(`/budget/${communityId}/create`)}
-                    >
-                        Abrir presupuesto
-                    </button>
+                    {isPresident && (
+                        <>
+                            <p>Pulsa el botón para abrir uno nuevo.</p>
+                            <button
+                                className={styles.btnOpen}
+                                onClick={() => navigate(`/budget/${communityId}/create`)}
+                            >
+                                Abrir presupuesto
+                            </button>
+                        </>
+                    )}
                 </div>
             </div>
         );
@@ -164,7 +171,7 @@ export const BudgetCurrentPage = () => {
                         <th>TIPO</th>
                         <th>MES</th>
                         <th>COSTE</th>
-                        <th>ACCIONES</th>
+                        {isPresident && <th>ACCIONES</th>}
                     </tr>
                 </thead>
                 <tbody>
@@ -176,19 +183,21 @@ export const BudgetCurrentPage = () => {
                             </td>
                             <td>{monthLabel(expense.month)}</td>
                             <td>{formatMoney(expense.cost)}</td>
-                            <td>
-                                <button
-                                    className={styles.btnEdit}
-                                    onClick={() => navigate(`/expenses/${communityId}/${budget!.id}/edit/${expense.id}`)}
-                                >
-                                    Editar
-                                </button>
-                            </td>
+                            {isPresident && (
+                                <td>
+                                    <button
+                                        className={styles.btnEdit}
+                                        onClick={() => navigate(`/expenses/${communityId}/${budget!.id}/edit/${expense.id}`)}
+                                    >
+                                        Editar
+                                    </button>
+                                </td>
+                            )}
                         </tr>
                     ))}
                     {expenses.length === 0 && (
                         <tr>
-                            <td colSpan={5} className={styles.empty}>No hay gastos registrados.</td>
+                            <td colSpan={isPresident ? 5 : 4} className={styles.empty}>No hay gastos registrados.</td>
                         </tr>
                     )}
                 </tbody>
@@ -209,20 +218,24 @@ export const BudgetCurrentPage = () => {
                     <span className={styles.emergencyValue}>{formatMoney(budget!.emergencyFund)}</span>
                     <span className={styles.emergencySub}>Reserva para la comunidad</span>
                 </div>
-                <button className={styles.btnEdit} onClick={handleEditFund}>
-                    Editar fondo
-                </button>
+                {isPresident && (
+                    <button className={styles.btnEdit} onClick={handleEditFund}>
+                        Editar fondo
+                    </button>
+                )}
             </div>
 
-            <div className={styles.closeSection}>
-                <div className={styles.closeInfo}>
-                    <span className={styles.closeTitle}>Cerrar presupuesto</span>
-                    <span className={styles.closeSub}>Una vez cerrado no podrá editarse.</span>
+            {isPresident && (
+                <div className={styles.closeSection}>
+                    <div className={styles.closeInfo}>
+                        <span className={styles.closeTitle}>Cerrar presupuesto</span>
+                        <span className={styles.closeSub}>Una vez cerrado no podrá editarse.</span>
+                    </div>
+                    <button className={styles.btnClose} onClick={handleClose}>
+                        Cerrar presupuesto
+                    </button>
                 </div>
-                <button className={styles.btnClose} onClick={handleClose}>
-                    Cerrar presupuesto
-                </button>
-            </div>
+            )}
         </div>
     );
 };

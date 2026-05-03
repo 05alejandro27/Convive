@@ -20,8 +20,15 @@ public interface UserApartmentRepository extends JpaRepository<UserApartment, Lo
     @Query("SELECT ua FROM UserApartment ua WHERE ua.user.id = :userId")
     Optional<UserApartment> findByUserId(@Param("userId") Long userId);
 
+    @Query("SELECT ua FROM UserApartment ua WHERE ua.user.id = :userId AND ua.apartment.community.id = :communityId")
+    Optional<UserApartment> findByUserIdAndCommunityId(@Param("userId") Long userId, @Param("communityId") Long communityId);
+
     //Cuenta pisos los ocupados, es decir, tienen un vecino asignado, el vecino está habilitado y el piso está activo
     @Query("SELECT COUNT(ua) FROM UserApartment ua WHERE ua.apartment.community.id = :communityId AND ua.user.enabled = true AND ua.apartment.active = true")
     long countOccupiedByCommunityId(@Param("communityId") Long communityId);
+
+    //Cuanta el numero de vecinos de una comunidad
+    @Query("SELECT COUNT(ua) FROM UserApartment ua WHERE ua.apartment.community.id = :communityId AND ua.user.enabled = true")
+    long countByCommunityId(@Param("communityId") Long communityId);
 
 }
