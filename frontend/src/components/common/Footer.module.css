@@ -1,0 +1,47 @@
+.footer {
+    border-top: 1px solid #e0e0e0;
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+}
+
+.content {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.brand {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.copy {
+    font-size: 0.78rem;
+    color: #999;
+}
+
+.right {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.link {
+    font-size: 0.85rem;
+    color: #656e95;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+    color: #e8a0a0;
+}

@@ -1,5 +1,7 @@
 import { Navigate, Outlet, useParams } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { Navbar } from './Navbar';
+import { Footer } from './Footer';
 
 export const ProtectedRoute = () => {
     //Datos del usuario
@@ -16,6 +18,14 @@ export const ProtectedRoute = () => {
         return <Navigate to={`/login/${savedCommunityId}`} replace />;
     }
 
-    //Si el usuario existe o tiene clave se muestra el contenido de las rutas protegidas
-    return <Outlet />;
+    //Layout completo: navbar arriba, contenido en el centro y footer abajo
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+            <Navbar />
+            <main style={{ flex: 1 }}>
+                <Outlet />
+            </main>
+            <Footer />
+        </div>
+    );
 };
