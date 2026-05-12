@@ -1,0 +1,30 @@
+.filters {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+}
+
+.filterGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filterGroup label {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.filterGroup select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background: #fff;
+    outline: none;
+}
+
+.filterGroup select:focus {
+    border-color: #656e95;
+}

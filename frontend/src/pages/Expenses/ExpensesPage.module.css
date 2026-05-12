@@ -1,0 +1,50 @@
+.container {
+    max-width: 1800px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.btnCreate {
+    padding: 10px 20px;
+    background-color: #656e95;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btnCreate:hover {
+    background-color: #e8a0a0;
+}
+
+.loading {
+    text-align: center;
+    color: #999;
+    padding: 3rem;
+    font-size: 0.95rem;
+}
+
+.error {
+    background-color: #fdecea;
+    color: #c62828;
+    font-size: 0.9rem;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}

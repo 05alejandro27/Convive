@@ -1,0 +1,135 @@
+.container {
+    max-width: 1800px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 1.5rem;
+}
+
+.linkHistory {
+    font-size: 0.9rem;
+    color: #656e95;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-decoration: underline;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+.linkHistory:hover {
+    color: #e8a0a0;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.badgeOPEN {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.badgeCLOSED {
+    background-color: #f5f5f5;
+    color: #666;
+}
+
+.historyList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.historyCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.historyLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.historyName {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.historyDates {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.historyRight {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.historyAmounts {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.historyAmount {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2e7d32;
+}
+
+.btnView {
+    padding: 6px 14px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.btnView:hover {
+    border-color: #656e95;
+    color: #656e95;
+}
+
+.loading {
+    text-align: center;
+    color: #999;
+    padding: 3rem;
+    font-size: 0.95rem;
+}
+
+.empty {
+    text-align: center;
+    color: #999;
+    padding: 3rem;
+    font-size: 0.95rem;
+}
+
+.error {
+    background-color: #fdecea;
+    color: #c62828;
+    font-size: 0.9rem;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}

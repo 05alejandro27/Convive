@@ -1,0 +1,268 @@
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.btnBack {
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: #656e95;
+    padding: 0;
+    margin-bottom: 1.25rem;
+    text-decoration: underline;
+}
+
+.btnBack:hover {
+    color: #e8a0a0;
+}
+
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1.75rem 2rem;
+    background: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+    gap: 1rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid #e0e0e0;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.badgeOPEN {
+    background-color: #f0faf0;
+    color: #2e7d32;
+    border-color: #c8e6c9;
+}
+
+.badgeCLOSED {
+    background-color: #f5f5f5;
+    color: #999;
+    border-color: #e0e0e0;
+}
+
+.description {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0 0 1rem;
+    line-height: 1.5;
+}
+
+.meta {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.error {
+    background-color: #fdecea;
+    color: #c62828;
+    font-size: 0.9rem;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.voteSection {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+.voteTitle {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 0.75rem;
+}
+
+.voteButtons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btnVote {
+    padding: 10px 22px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btnVote:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btnFavor {
+    background-color: #656e95;
+    color: #fff;
+}
+
+.btnFavor:hover:not(:disabled) {
+    background-color: #535b82;
+}
+
+.btnContra {
+    background-color: #fff;
+    color: #c62828;
+    border: 1px solid #c62828;
+}
+
+.btnContra:hover:not(:disabled) {
+    background-color: #fdecea;
+}
+
+.btnAbstain {
+    background-color: #fff;
+    color: #666;
+    border: 1px solid #ccc;
+}
+
+.btnAbstain:hover:not(:disabled) {
+    border-color: #656e95;
+    color: #656e95;
+}
+
+.votedNotice {
+    font-size: 0.9rem;
+    color: #888;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 1rem;
+    margin: 0.5rem 0 0;
+}
+
+.resultsCard {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1.75rem 2rem;
+    background: #fff;
+}
+
+.resultsTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 1.25rem;
+}
+
+.resultsGrid {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+}
+
+.resultGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    min-width: 90px;
+}
+
+.resultLabel {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 0.25rem;
+}
+
+.resultCount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead th {
+    text-align: center;
+    padding: 0.8rem;
+    border-bottom: 2px solid #e0e0e0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #999;
+    letter-spacing: 0.5px;
+}
+
+.table tbody td {
+    text-align: center;
+    padding: 0.8rem;
+    border-bottom: 1px solid #f0f0f0;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.thLeft {
+    text-align: left;
+}
+
+.tdLeft {
+    text-align: left;
+}
+
+.voteBadge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+.voteBadge_IN_FAVOR {
+    background-color: #f0faf0;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+.voteBadge_AGAINST {
+    background-color: #fdecea;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+.voteBadge_ABSTAIN {
+    background-color: #f5f5f5;
+    color: #666;
+    border: 1px solid #e0e0e0;
+}
+
+.loading {
+    text-align: center;
+    color: #999;
+    padding: 3rem;
+    font-size: 0.95rem;
+}

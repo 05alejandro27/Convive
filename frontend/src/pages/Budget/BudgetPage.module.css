@@ -1,0 +1,263 @@
+.container {
+    max-width: 1800px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.titleRow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0 0 1.5rem;
+}
+
+.linkHistory {
+    font-size: 0.9rem;
+    color: #656e95;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-decoration: underline;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+.linkHistory:hover {
+    color: #e8a0a0;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.badgeOPEN {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.badgeCLOSED {
+    background-color: #f5f5f5;
+    color: #666;
+}
+
+.progressWrapper {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.progressHeader {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.progressBar {
+    width: 100%;
+    height: 14px;
+    background: #f0f0f0;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background-color: #656e95;
+    border-radius: 7px;
+    transition: width 0.3s;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead th {
+    text-align: center;
+    padding: 0.8rem;
+    border-bottom: 2px solid #e0e0e0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #999;
+    letter-spacing: 0.5px;
+}
+
+.table tbody td {
+    text-align: center;
+    padding: 0.8rem;
+    border-bottom: 1px solid #f0f0f0;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.btnEdit {
+    padding: 6px 14px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.btnEdit:hover {
+    border-color: #656e95;
+    color: #656e95;
+}
+
+.emergencyCard {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.emergencyInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.emergencyLabel {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #999;
+    letter-spacing: 0.5px;
+}
+
+.emergencyValue {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.emergencySub {
+    font-size: 0.78rem;
+    color: #999;
+}
+
+.closeSection {
+    border: 1px solid #e8a0a0;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.closeInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.closeTitle {
+    font-weight: 700;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.closeSub {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.btnClose {
+    padding: 10px 20px;
+    background: #fff;
+    border: 1px solid #c62828;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #c62828;
+}
+
+.btnClose:hover {
+    background: #fdecea;
+}
+
+.btnOpen {
+    padding: 10px 20px;
+    background-color: #656e95;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btnOpen:hover {
+    background-color: #e8a0a0;
+}
+
+.emptyState {
+    text-align: center;
+    color: #666;
+    padding: 3rem;
+    font-size: 0.95rem;
+}
+
+.emptyState p {
+    margin: 0.5rem 0;
+}
+
+.loading {
+    text-align: center;
+    color: #999;
+    padding: 3rem;
+    font-size: 0.95rem;
+}
+
+.empty {
+    text-align: center;
+    color: #999;
+    padding: 3rem;
+    font-size: 0.95rem;
+}
+
+.error {
+    background-color: #fdecea;
+    color: #c62828;
+    font-size: 0.9rem;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.statsRow {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
