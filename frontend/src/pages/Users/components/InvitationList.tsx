@@ -1,18 +1,10 @@
 import type { InvitationListResponse } from "../../../services/invitation.service";
 import styles from '../UsersPage.module.css';
+import { formatDateLong } from '../../../utils/formatters';
 
 //Construir el piso
 const formatApartment = (floor: number, door: string) => {
     return `Planta: ${floor} Puerta: ${door}`;
-};
-
-//Darle formato a la fecha
-const formatDate = (date: string) => {
-    return new Date(date).toLocaleDateString('es-ES', {
-        day: 'numeric',
-        month: "long",
-        year: "numeric"
-    });
 };
 
 export const InvitationList = ({invitations}: Props) => {
@@ -36,7 +28,7 @@ export const InvitationList = ({invitations}: Props) => {
                     <span className={styles.invitationCode}>{inv.code}</span>
                     <div className={styles.invitationInfo}>
                         <span>{formatApartment(inv.floor, inv.door)}</span>
-                        <span>Expira: {formatDate(inv.expiresDate)}</span>
+                        <span>Expira: {formatDateLong(inv.expiresDate)}</span>
                     </div>
                 </li>
             ))}

@@ -3,22 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { pollService } from '../../services/poll.service';
 import type { PollResponse, VoteResponse } from '../../services/poll.service';
 import styles from './PollDetailPage.module.css';
-
-const formatDeadline = (deadline: string) => {
-    return new Date(deadline).toLocaleDateString('es-ES', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-    });
-};
-
-const voteLabel = (value: string) => {
-    if (value === 'IN_FAVOR') return 'A favor';
-    if (value === 'AGAINST') return 'En contra';
-    return 'Abstención';
-};
+import { formatDeadline, voteLabel } from '../../utils/formatters';
 
 export const PollDetailPage = () => {
     const { communityId, pollId } = useParams<{ communityId: string; pollId: string }>();

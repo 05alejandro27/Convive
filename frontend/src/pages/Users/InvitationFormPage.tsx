@@ -4,7 +4,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { invitationService } from '../../services/invitation.service';
-import { apartmentService, type ApartmentResponse } from '../../services/apartment.service';
+import { apartmentService } from '../../services/apartment.service';
+import type { ApartmentResponse } from '../../services/apartment.service';
 import styles from './InvitationFormPage.module.css';
 
 const schema = yup.object({

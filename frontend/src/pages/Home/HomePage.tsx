@@ -10,30 +10,7 @@ import type { ExpenseResponse } from '../../services/expenses.service';
 import { pollService } from '../../services/poll.service';
 import type { PollResponse } from '../../services/poll.service';
 import styles from './HomePage.module.css';
-
-//Función para decodificar el payload del JWT sin librerías externas
-const decodeToken = (token: string) => {
-    const payload = token.split('.')[1];
-    const decoded = atob(payload);
-    return JSON.parse(decoded);
-};
-
-const formatMoney = (amount: number) => {
-    return amount.toLocaleString('es-ES', { minimumFractionDigits: 2 }) + ' €';
-};
-
-const formatDate = (date: string) => {
-    return new Date(date).toLocaleDateString('es-ES', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-    });
-};
-
-const monthLabel = (month: number) => {
-    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-    return months[month - 1] || '';
-};
+import { decodeToken, formatMoney, formatDate, monthLabel } from '../../utils/formatters';
 
 export const HomePage = () => {
     const { communityId } = useParams<{ communityId: string }>();

@@ -8,18 +8,7 @@ import { ExpenseFilters } from './components/ExpenseFilters';
 import { ExpenseTable } from '../Expenses/components/ExpenseTable';
 import { StatCard } from './components/StatCard';
 import styles from './BudgetPage.module.css';
-
-const formatDate = (date: string) => {
-    return new Date(date).toLocaleDateString('es-ES', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-    });
-};
-
-const formatMoney = (amount: number) => {
-    return amount.toLocaleString('es-ES', { minimumFractionDigits: 2 }) + ' €';
-};
+import { formatDate, formatMoney } from '../../utils/formatters';
 
 export const BudgetDetailPage = () => {
     const { communityId, budgetId } = useParams<{ communityId: string; budgetId: string }>();

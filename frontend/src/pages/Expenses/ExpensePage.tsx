@@ -9,12 +9,9 @@ import { ExpenseTable } from './components/ExpenseTable';
 import { BudgetStats } from '../Budget/components/BudgetStats';
 import { getRole } from '../../utils/getRole';
 import styles from './ExpensesPage.module.css';
+import { formatMoney } from '../../utils/formatters';
 
 const MONTH_NAMES = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-
-const formatMoney = (amount: number) => {
-    return amount.toLocaleString('es-ES', { minimumFractionDigits: 2 }) + ' €';
-};
 
 export const ExpensesPage = () => {
     const { communityId, budgetId } = useParams<{ communityId: string; budgetId: string }>();

@@ -7,23 +7,7 @@ import type { ExpenseResponse } from '../../services/expenses.service';
 import { BudgetStats } from './components/BudgetStats';
 import { getRole } from '../../utils/getRole';
 import styles from './BudgetPage.module.css';
-
-const formatDate = (date: string) => {
-    return new Date(date).toLocaleDateString('es-ES', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-    });
-};
-
-const formatMoney = (amount: number) => {
-    return amount.toLocaleString('es-ES', { minimumFractionDigits: 2 }) + ' €';
-};
-
-const monthLabel = (month: number) => {
-    const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-    return months[month - 1] || '';
-};
+import { formatDate, formatMoney, monthLabel } from '../../utils/formatters';
 
 export const BudgetCurrentPage = () => {
     const { communityId } = useParams<{ communityId: string }>();
@@ -134,7 +118,7 @@ export const BudgetCurrentPage = () => {
             </div>
 
             <p className={styles.subtitle}>
-                {formatDate(budget!.startDate)} - al - {formatDate(budget!.endDate)}
+                Del {formatDate(budget!.startDate)} al {formatDate(budget!.endDate)}
             </p>
 
             <button

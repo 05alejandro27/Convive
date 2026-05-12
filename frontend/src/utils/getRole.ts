@@ -7,4 +7,4 @@ export const getRole = (): string | null => {
     } catch {
         return null;
     }
-};
+}; 

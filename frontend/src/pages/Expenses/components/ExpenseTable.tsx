@@ -1,15 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import type { ExpenseResponse } from '../../../services/expenses.service';
 import styles from './ExpenseTable.module.css';
-
-const formatMoney = (amount: number) => {
-    return amount.toLocaleString('es-ES', { minimumFractionDigits: 2 }) + ' €';
-};
-
-const monthLabel = (month: number) => {
-    const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-    return months[month - 1] || '';
-};
+import { formatMoney, monthLabel } from '../../../utils/formatters';
 
 export const ExpenseTable = ({ expenses, communityId, budgetId, isOpen, onDelete }: Props) => {
     const navigate = useNavigate();
@@ -38,7 +30,7 @@ export const ExpenseTable = ({ expenses, communityId, budgetId, isOpen, onDelete
             <tbody>
                 {expenses.map((expense) => (
                     <tr key={expense.id}>
-                        <td className={styles.tdLeft}>{expense.name}</td>
+                        <td>{expense.name}</td>
                         <td>
                             <span className={`${styles.badge} ${styles.badgeType}`}>
                                 {expense.expenseType === 'FIXED' ? 'Fijo' : 'Variable'}

@@ -3,25 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { pollService } from '../../services/poll.service';
 import type { PollResponse } from '../../services/poll.service';
 import styles from './PollsPage.module.css';
-
-const formatDeadline = (deadline: string) => {
-    return new Date(deadline).toLocaleDateString('es-ES', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-    });
-};
-
-const getRole = () => {
-    const token = localStorage.getItem('token');
-    if (!token) return null;
-    try {
-        const payload = JSON.parse(atob(token.split('.')[1]));
-        return payload.role as string;
-    } catch {
-        return null;
-    }
-};
+import { formatDeadline } from '../../utils/formatters';
+import { getRole } from '../../utils/getRole';
 
 export const PollsPage = () => {
     const { communityId } = useParams<{ communityId: string }>();

@@ -2,6 +2,7 @@ package com.convive.backend.config;
 
 import com.convive.backend.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -27,6 +28,9 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
+    @Value("${app.cors.allowed-origins}")
+    private String allowedOrigins;
+
     @Bean
     //Recibimos HttpSecurity de Spring y lo configuramos
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -40,6 +44,7 @@ public class SecurityConfig {
 
                         //Públicos
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/actuator/health").permitAll()
 
                         //Pisos (Presidente)
                         .requestMatchers("/api/apartments/**").hasRole("PRESIDENT")
@@ -81,7 +86,7 @@ public class SecurityConfig {
         //Creo un objeto de configuración vacio
         CorsConfiguration configuration = new CorsConfiguration();
         //Le asignamos la URL que tiene permiso para hacer peticiones
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+        configuration.setAllowedOrigins(List.of(allowedOrigins.split(",")));
         //Definimos que metodos se permiten
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         //Permito cualquier cabecera HTTP en las peticiones

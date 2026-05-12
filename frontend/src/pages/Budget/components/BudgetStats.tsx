@@ -1,10 +1,7 @@
 import type { BudgetStatsResponse } from '../../../services/budget.service';
 import { StatCard } from './StatCard';
 import styles from './BudgetStats.module.css';
-
-const formatMoney = (amount: number) => {
-    return amount.toLocaleString('es-ES', { minimumFractionDigits: 2 }) + ' €';
-};
+import { formatMoney } from '../../../utils/formatters';
 
 export const BudgetStats = ({ stats, annualAmount, extra }: Props) => {
     return (

@@ -109,7 +109,7 @@ export const ExpenseFormPage = () => {
             } else {
                 await expenseService.create(Number(budgetId), request);
             }
-            navigate(`/budget/${communityId}/current`);
+            navigate(`/expenses/${communityId}/${budgetId}`);
         } catch {
             setGlobalError('Ha ocurrido un error');
         }
@@ -231,7 +231,7 @@ export const ExpenseFormPage = () => {
                         <button
                             type="button"
                             className={styles.btnCancel}
-                            onClick={() => navigate(`/budget/${communityId}/current`)}
+                            onClick={() => navigate(`/expenses/${communityId}/${budgetId}`)}
                         >
                             Cancelar
                         </button>

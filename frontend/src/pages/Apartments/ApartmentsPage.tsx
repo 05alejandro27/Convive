@@ -11,15 +11,21 @@ export const ApartmentsPage = () => {
     const {communityId} = useParams<{communityId: string}>();
     const navigate = useNavigate();
 
-    //Estado
-    const [apartments, setApartments] = useState<ApartmentResponse[]>([]);
+    //Estado de datos
     const [allApartments, setAllApartments] = useState<ApartmentResponse[]>([]);
+    const [apartments, setApartments] = useState<ApartmentResponse[]>([]);
     const [stats, setStats] = useState<ApartmentStatsResponse | null>(null);
-    const [filterStatus, setFilterStatus] = useState<string>('');
-    const [filterFloor, setFilterFloor] = useState<string>('');
+    const [uniqueFloors, setUniqueFloors] = useState<number[]>([]);
+    const [uniqueDoors, setUniqueDoors] = useState<string[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [allFloors, setAllFloors] = useState<number[]>([]);
+
+    //Estado de filtros
+    const [filterFloor, setFilterFloor] = useState('');
+    const [filterDoor, setFilterDoor] = useState('');
+    const [filterTenant, setFilterTenant] = useState('');
+    const [filterStatus, setFilterStatus] = useState('');
+
 
     //Cargar al montar y cuando cambian los filtros
     useEffect(() => {
@@ -32,9 +38,17 @@ export const ApartmentsPage = () => {
                 const statsData = await apartmentService.getStats(id);
                 setAllApartments(apartmentsData); //Guardo el array completo
                 setApartments(apartmentsData);    //También el que se muestra
-                const floors = [...new Set(apartmentsData.map((a) => a.floor))].sort((a, b) => a - b);
-                setAllFloors(floors);
+                
                 setStats(statsData);
+
+                //Extraer plantas únicas ordenadas
+                const floors = [...new Set(apartmentsData.map((a) => a.floor))].sort((a, b) => a - b);
+                setUniqueFloors(floors);
+
+                //Extraer puertas únicas ordenadas
+                const doors = [...new Set(apartmentsData.map((a) => a.door))].sort();
+                setUniqueDoors(doors);
+
             } catch {
                 setError('Error al cargar los pisos');
             } finally {
@@ -47,14 +61,29 @@ export const ApartmentsPage = () => {
     //Filtrado en memoria, sin llamar al backend
     useEffect(() => {
         let filtered = allApartments;
-        if (filterStatus) {
-            filtered = filtered.filter((a) => a.status === filterStatus);
-        }
+
         if (filterFloor) {
             filtered = filtered.filter((a) => a.floor === Number(filterFloor));
         }
+
+        if (filterDoor) {
+            filtered = filtered.filter((a) => a.door === filterDoor);
+        }
+
+        if (filterTenant) {
+            const tenant = filterTenant.toLowerCase();
+            filtered = filtered.filter((a) =>
+                a.residentFullName?.toLowerCase().includes(tenant)
+            );
+        }
+
+        if (filterStatus) {
+            filtered = filtered.filter((a) => a.status === filterStatus);
+        }
+
         setApartments(filtered);
-    }, [filterStatus, filterFloor, allApartments]);
+    }, [filterFloor, filterDoor, filterTenant, filterStatus, allApartments]);
+
 
     //Toggle activar/desactivar
     const handleToggleActive = async (apartmentId: number) => {
@@ -90,12 +119,18 @@ export const ApartmentsPage = () => {
             {stats && <ApartmentStats stats={stats} />}
 
             <ApartmentFilters
-                filterStatus={filterStatus}
                 filterFloor={filterFloor}
-                uniqueFloors={allFloors}
-                onStatusChange={setFilterStatus}
+                filterDoor={filterDoor}
+                filterTenant={filterTenant}
+                filterStatus={filterStatus}
+                uniqueFloors={uniqueFloors}
+                uniqueDoors={uniqueDoors}
                 onFloorChange={setFilterFloor}
+                onDoorChange={setFilterDoor}
+                onTenantChange={setFilterTenant}
+                onStatusChange={setFilterStatus}
             />
+
 
             {error && <p className={styles.error}>{error}</p>}
 

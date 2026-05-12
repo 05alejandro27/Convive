@@ -26,7 +26,7 @@
 }
 
 .tdLeft {
-    text-align: left;
+    text-align: left !important;
 }
 
 .badge {
@@ -50,13 +50,13 @@
 }
 
 .linkAction {
-    background: none;
-    border: none;
+    padding: 6px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
     font-size: 0.9rem;
     cursor: pointer;
     color: #333;
-    text-decoration: underline;
-    padding: 0;
 }
 
 .linkAction:hover {
@@ -64,13 +64,13 @@
 }
 
 .linkActionDanger {
-    background: none;
-    border: none;
+    padding: 6px 14px;
+    border: 1px solid #e8a0a0;
+    border-radius: 6px;
+    background-color: #fff;
     font-size: 0.9rem;
     cursor: pointer;
     color: #c62828;
-    text-decoration: underline;
-    padding: 0;
 }
 
 .linkActionDanger:hover {

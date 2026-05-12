@@ -222,3 +222,17 @@ Al ser tablas muy largas necesitaria un scroll vertical por ahora no lo aplicamo
     border-radius: 6px;
     margin-bottom: 1rem;
 }   
+
+/*Filtros de pisos*/
+.filterInput {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    outline: none;
+    width: 180px;
+}
+
+.filterInput:focus {
+    border-color: #656e95;
+}

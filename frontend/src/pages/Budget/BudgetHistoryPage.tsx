@@ -3,18 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { budgetService } from '../../services/budget.service';
 import type { BudgetResponse } from '../../services/budget.service';
 import styles from './BudgetHistoryPage.module.css';
-
-const formatDate = (date: string) => {
-    return new Date(date).toLocaleDateString('es-ES', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-    });
-};
-
-const formatMoney = (amount: number) => {
-    return amount.toLocaleString('es-ES', { minimumFractionDigits: 2 }) + ' €';
-};
+import { formatDate, formatMoney } from '../../utils/formatters';
 
 export const BudgetHistoryPage = () => {
     const { communityId } = useParams<{ communityId: string }>();
