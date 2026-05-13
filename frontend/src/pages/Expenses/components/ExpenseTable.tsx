@@ -32,7 +32,7 @@ export const ExpenseTable = ({ expenses, communityId, budgetId, isOpen, onDelete
                     <tr key={expense.id}>
                         <td>{expense.name}</td>
                         <td>
-                            <span className={`${styles.badge} ${styles.badgeType}`}>
+                            <span className={styles.badge}>
                                 {expense.expenseType === 'FIXED' ? 'Fijo' : 'Variable'}
                             </span>
                         </td>

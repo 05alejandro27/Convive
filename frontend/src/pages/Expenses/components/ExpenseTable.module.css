@@ -37,12 +37,6 @@
     font-weight: 500;
 }
 
-.badgeType {
-    background-color: #f5f5f5;
-    color: #666;
-    border: 1px solid #e0e0e0;
-}
-
 .actions {
     display: flex;
     gap: 0.5rem;

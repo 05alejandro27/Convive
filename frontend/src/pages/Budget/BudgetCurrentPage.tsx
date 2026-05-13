@@ -163,7 +163,7 @@ export const BudgetCurrentPage = () => {
                         <tr key={expense.id}>
                             <td>{expense.name}</td>
                             <td>
-                                <span className={styles.badge}>{expense.expenseType}</span>
+                                <span className={styles.badge}>{expense.expenseType === 'FIXED' ? 'Fijo' : 'Variable'}</span>   
                             </td>
                             <td>{monthLabel(expense.month)}</td>
                             <td>{formatMoney(expense.cost)}</td>

@@ -70,6 +70,10 @@ export const UsersPage = () => {
             });
         }
 
+        if (filterApartment) {
+            filtered = filtered.filter((u) => u.apartment === filterApartment);
+        }
+
         if (filterEmail) {
             filtered = filtered.filter((u) =>
                 u.email.toLowerCase().includes(filterEmail.toLowerCase())
@@ -80,10 +84,6 @@ export const UsersPage = () => {
             filtered = filtered.filter((u) =>
                 u.phone.includes(filterPhone)
             );
-        }
-
-        if (filterApartment) {
-            filtered = filtered.filter((u) => u.apartment === filterApartment);
         }
 
         if (filterRole) {
@@ -124,9 +124,9 @@ export const UsersPage = () => {
 
             <UserFilters
                 filterName={filterName}
+                filterApartment={filterApartment}
                 filterEmail={filterEmail}
                 filterPhone={filterPhone}
-                filterApartment={filterApartment}
                 filterRole={filterRole}
                 filterEnabled={filterEnabled}
                 uniqueApartments={uniqueApartments}

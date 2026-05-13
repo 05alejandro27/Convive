@@ -9,6 +9,11 @@ html, body {
     min-height: 100vh;
     font-family: system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
+
+    background-image: url(/src/assets/fondo.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #root {

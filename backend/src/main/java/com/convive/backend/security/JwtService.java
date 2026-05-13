@@ -29,6 +29,8 @@ public class JwtService {
         extraClaims.put("communityId", communityId);
         //Añade el role del usuario al token
         extraClaims.put("role", user.getRole().name());
+        //Añade el nombre del usuario al token (Para el saludo de home)
+        extraClaims.put("firstName", user.getFirstName());
 
         //Empieza a construir el token usando el patron builder
         return Jwts.builder()

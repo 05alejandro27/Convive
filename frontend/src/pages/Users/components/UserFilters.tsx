@@ -2,9 +2,9 @@ import styles from '../UsersPage.module.css';
 
 export const UserFilters = ({
     filterName,
+    filterApartment,
     filterEmail,
     filterPhone,
-    filterApartment,
     filterRole,
     filterEnabled,
     uniqueApartments,
@@ -30,6 +30,22 @@ export const UserFilters = ({
             </div>
 
             <div className={styles.filterGroup}>
+                <label htmlFor="filterApartment">Piso:</label>
+                <select
+                    id="filterApartment"
+                    value={filterApartment}
+                    onChange={(e) => onApartmentChange(e.target.value)}
+                >
+                    <option value="">Todos</option>
+                    {uniqueApartments.map((apt) => (
+                        <option key={apt} value={apt}>
+                            {apt}
+                        </option>
+                    ))}
+                </select>
+            </div>
+
+            <div className={styles.filterGroup}>
                 <label htmlFor="filterEmail">Correo:</label>
                 <input
                     id="filterEmail"
@@ -51,22 +67,6 @@ export const UserFilters = ({
                     value={filterPhone}
                     onChange={(e) => onPhoneChange(e.target.value)}
                 />
-            </div>
-
-            <div className={styles.filterGroup}>
-                <label htmlFor="filterApartment">Piso:</label>
-                <select
-                    id="filterApartment"
-                    value={filterApartment}
-                    onChange={(e) => onApartmentChange(e.target.value)}
-                >
-                    <option value="">Todos</option>
-                    {uniqueApartments.map((apt) => (
-                        <option key={apt} value={apt}>
-                            {apt}
-                        </option>
-                    ))}
-                </select>
             </div>
 
             <div className={styles.filterGroup}>

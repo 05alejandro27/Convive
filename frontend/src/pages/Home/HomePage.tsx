@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { userService } from '../../services/user.service';
-import type { UserResponse } from '../../services/user.service';
 import { budgetService } from '../../services/budget.service';
 import type { BudgetResponse, BudgetStatsResponse } from '../../services/budget.service';
 import { expenseService } from '../../services/expenses.service';
@@ -16,9 +14,6 @@ export const HomePage = () => {
     const { communityId } = useParams<{ communityId: string }>();
     const { user } = useAuth();
     const navigate = useNavigate();
-
-    //Estado del usuario logueado
-    const [currentUser, setCurrentUser] = useState<UserResponse | null>(null);
 
     //Estado del presupuesto
     const [budget, setBudget] = useState<BudgetResponse | null>(null);
@@ -38,17 +33,6 @@ export const HomePage = () => {
             try {
                 setLoading(true);
                 const id = Number(communityId);
-
-                //Decodifico el JWT para obtener el userId
-                const tokenData = decodeToken(user!.token);
-                const userId = Number(tokenData.sub);
-
-                //Cargo los datos del usuario logueado
-                const users = await userService.findAll(id);
-                const me = users.find((u) => u.id === userId);
-                if (me) {
-                    setCurrentUser(me);
-                }
 
                 //Cargo el presupuesto actual
                 try {
@@ -88,7 +72,6 @@ export const HomePage = () => {
 
     //Decodifico el rol del JWT
     const tokenData = decodeToken(user!.token);
-    const role = tokenData.role === 'PRESIDENT' ? 'Presidente' : 'Vecino';
 
     //Calculo las votaciones abiertas y pendientes de voto
     const openPolls = polls.filter((p) => p.status === 'OPEN');
@@ -104,12 +87,7 @@ export const HomePage = () => {
 
             {/*Cabecera de bienvenida*/}
             <div className={styles.welcome}>
-                <h1 className={styles.welcomeTitle}>
-                    Hola, {currentUser?.firstName || 'vecino'}
-                </h1>
-                <p className={styles.welcomeSub}>
-                    Piso {currentUser?.apartment || '—'} · {role}
-                </p>
+                Hola, {tokenData.firstName || 'vecino'}
             </div>
 
             {/*Tarjetas de resumen*/}
