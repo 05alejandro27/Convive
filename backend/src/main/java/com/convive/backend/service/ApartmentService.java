@@ -13,6 +13,8 @@ import com.convive.backend.repository.CommunityRepository;
 import com.convive.backend.repository.UserApartmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -61,6 +63,7 @@ public class ApartmentService {
     }
 
     //Crear un piso
+    @Transactional
     public ApartmentResponse createApartment(Long communityId, ApartmentRequest request) {
 
         //Verificar que la comunidad existe
@@ -87,6 +90,7 @@ public class ApartmentService {
     }
 
     //Editar un piso
+    @Transactional
     public ApartmentResponse editApartment(Long communityId, Long apartmentId, ApartmentRequest request) {
 
         //Buscar el piso asegurándonos de que pertenece a esa comunidad
@@ -112,6 +116,7 @@ public class ApartmentService {
     }
 
     //Activar o desactivar un piso
+    @Transactional
     public ApartmentResponse toggleActive(Long communityId, Long apartmentId) {
 
         //Buscar el piso asegurándonos de que pertenece a esa comunidad

@@ -158,8 +158,7 @@ Al ser tablas muy largas necesitaria un scroll vertical por ahora no lo aplicamo
     justify-content: center;
 }
 
-.btnEdit,
-.btnInvite {
+.btnEdit {
     padding: 6px 14px;
     background: #fff;
     border: 1px solid #ccc;
@@ -169,8 +168,7 @@ Al ser tablas muy largas necesitaria un scroll vertical por ahora no lo aplicamo
     color: #333;
 }
 
-.btnEdit:hover,
-.btnInvite:hover {
+.btnEdit:hover {
     border-color: #656e95;
     color: #656e95;
 }

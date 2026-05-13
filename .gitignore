@@ -1,42 +1,43 @@
-# Variables de entorno
+#Variables de entorno
 .env
 
-# Java / Maven
+#Java / Maven
 backend/target/
 *.class
 *.jar
 *.war
 *.log
 
-# Spring Boot - Perfil de desarrollo local (credenciales)
+#Spring Boot - Perfil de desarrollo local (credenciales)
 backend/src/main/resources/application-dev.properties
 
-# Node
+#Node
 frontend/node_modules/
 frontend/dist/
 frontend/.env.local
 
-# Base de datos - Backups (pueden contener datos sensibles)
+#Base de datos - Backups (pueden contener datos sensibles)
 database/backups/*.sql
 
-# IDEs
+#IDEs
 .idea/
 *.iml
 .vscode/
 .zed/
 
-# OS
+#OS
 .DS_Store
 Thumbs.db
 
-# Docker
+#Docker
 docker-compose.override.yml
 
-# Spring Boot - Propiedades de producción
+#Spring Boot - Propiedades de producción
 backend/src/main/resources/application-prod.properties
 backend/src/main/resources/application-dev.properties
 
-# Frontend - Variables de entorno
+#Frontend - Variables de entorno
 frontend/.env.*
 frontend/.env.production
 frontend/.env.local
+

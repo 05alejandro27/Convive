@@ -47,7 +47,7 @@ public class AuthService {
         }
 
         //Comprueba si la contraseña puesta por el usuario es la misma que la de la base de datos
-        if (!passwordEncoder.matches(loginRequest.password().trim(), user.getPassword().trim())) {
+        if (!passwordEncoder.matches(loginRequest.password(), user.getPassword())) {
             throw new InvalidCredentialsException("Planta, piso o contraseña incorrectos");
         }
 

@@ -11,6 +11,7 @@ import com.convive.backend.repository.UserApartmentRepository;
 import com.convive.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -46,6 +47,7 @@ public class UserService {
     }
 
     //Editar un usuario
+    @Transactional
     public UserResponse editUser(Long communityId, Long userId, UserRequest request) {
 
         //Buscar el usuario asegurándonos de que pertenece a esa comunidad
@@ -78,6 +80,7 @@ public class UserService {
     }
 
     //Habilitar o deshabilitar un usuario
+    @Transactional
     public UserResponse toggleEnable(Long communityId, Long userId) {
 
         //Buscar el usuario asegurándonos de que pertenece a esa comunidad

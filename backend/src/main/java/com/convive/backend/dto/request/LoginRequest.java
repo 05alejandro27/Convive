@@ -2,6 +2,7 @@ package com.convive.backend.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 //Creo un record, es una clase de Java exclusiva para transportar datos y esta pensadas para DTOs que no llevan lógica adicional
@@ -16,9 +17,10 @@ public record LoginRequest(
     String door,
 
     //Compueba que no llegue nulo, vacio o espacios en blancos y pone un mensaje en caso de serlo
-    @NotBlank(message = "El parámetro contraseña es obligatorio")
+    @NotBlank(message = "La contraseña es obligatorio")
     //Compueba que el tamaño sea mínimo de 8 carácteres y pone un mensaje en caso de serlo
     @Size(min = 8, message = "La contraseña debe tener mínimo 8 carácteres")
+    @Pattern(regexp = "^\\S.*\\S$|^\\S$", message = "La contraseña no puede tener espacios al inicio o al final")
     String password
 
 ) {}

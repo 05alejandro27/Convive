@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useAuth } from '../../hooks/useAuth';
-import styles from './loginPage.module.css';
+import styles from './LoginPage.module.css';
 
 const schema = yup.object({
     floor: yup

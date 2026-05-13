@@ -14,6 +14,8 @@ import com.convive.backend.repository.BudgetRepository;
 import com.convive.backend.repository.CommunityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -53,6 +55,7 @@ public class BudgetService {
         return budgetMapper.toResponse(budget);
     }
 
+    @Transactional
     public BudgetResponse createBudget(Long communityId, BudgetRequest budgetRequest) {
 
         //Verificar que la comunidad existe
@@ -79,6 +82,7 @@ public class BudgetService {
         return budgetMapper.toResponse(saved);
     }
 
+    @Transactional
     public BudgetResponse updateEmergencyFund(Long communityId, Long budgetId, BudgetEmergencyRequest budgetRequest) {
 
         Budget budget = budgetRepository.findByCommunityIdAndBudgetId(communityId, budgetId)
@@ -97,6 +101,7 @@ public class BudgetService {
         return budgetMapper.toResponse(saved);
     }
 
+    @Transactional
     public BudgetResponse closeBudget(Long communityId, Long budgetId) {
 
         Budget budget = budgetRepository.findByCommunityIdAndBudgetId(communityId, budgetId)

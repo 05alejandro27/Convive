@@ -14,6 +14,8 @@ import com.convive.backend.repository.InvitationRepository;
 import com.convive.backend.repository.UserApartmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -37,6 +39,7 @@ public class InvitationService {
                 .toList();
     }
 
+    @Transactional
     public InvitationResponse createCode(Long communityId, InvitationRequest request) {
 
         Apartment apartment = apartmentRepository.findByCommunityIdAndFloorAndDoor(communityId, request.floor(), request.door())
@@ -82,6 +85,7 @@ public class InvitationService {
         return new InvitationResponse(codeInvitation);
     }
 
+    @Transactional
     public void use(Invitation invitation, User user) {
 
         invitation.setUsed(true);

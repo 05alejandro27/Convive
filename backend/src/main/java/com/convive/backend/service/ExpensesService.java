@@ -13,6 +13,7 @@ import com.convive.backend.repository.CommunityRepository;
 import com.convive.backend.repository.ExpensesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -45,6 +46,7 @@ public class ExpensesService {
                 .toList();
     }
 
+    @Transactional
     public ExpenseResponse createExpense(Long budgetId, ExpenseRequest expenseRequest) {
 
         Budget budget = findOpenBudget(budgetId);
@@ -71,6 +73,7 @@ public class ExpensesService {
         return expenseMapper.toResponse(saved);
     }
 
+    @Transactional
     public ExpenseResponse updateExpense(Long budgetId, Long expenseId, ExpenseRequest expenseRequest) {
 
         Budget budget = findOpenBudget(budgetId);
@@ -98,6 +101,7 @@ public class ExpensesService {
         return expenseMapper.toResponse(saved);
     }
 
+    @Transactional
     public void delete(Long budgetId, Long expenseId) {
 
         findOpenBudget(budgetId);

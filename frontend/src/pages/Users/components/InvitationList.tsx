@@ -9,8 +9,6 @@ const formatApartment = (floor: number, door: string) => {
 
 export const InvitationList = ({invitations}: Props) => {
 
-    
-
     if (invitations.length === 0) {
         return (
             <div>
