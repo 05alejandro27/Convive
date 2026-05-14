@@ -28,6 +28,8 @@ export const HomePage = () => {
     //Estado general
     const [loading, setLoading] = useState(true);
 
+    const [error, setError] = useState<string | null>(null);
+
     useEffect(() => {
         const loadData = async () => {
             try {
@@ -58,13 +60,17 @@ export const HomePage = () => {
                 }
 
             } catch {
-                //Error general al cargar datos
+                setError('Error al cargar los datos. Por favor, inténtalo de nuevo más tarde.');
             } finally {
                 setLoading(false);
             }
         };
         loadData();
     }, [communityId, user]);
+
+    if (error) {
+        return <p className={styles.error}>{error}</p>;
+    }
 
     if (loading) {
         return <p className={styles.loading}>Cargando...</p>;
