@@ -40,11 +40,13 @@ export const UsersPage = () => {
                 setUsers(usersData);
 
                 //Extraer pisos únicos de los usuarios
-                const apartments = usersData
-                    .map((u) => u.apartment)
-                    .filter((apt) => apt && apt !== '—')
-                    .filter((apt, index, self) => self.indexOf(apt) === index)
-                    .sort();
+                const apartments: string[] = [];
+                for (const u of usersData) {
+                    if (u.apartment && u.apartment !== '—' && !apartments.includes(u.apartment)) {
+                        apartments.push(u.apartment);
+                    }
+                }
+                apartments.sort();
                 setUniqueApartments(apartments);
                 
                 const invitationCodes = await invitationService.findAll(id);

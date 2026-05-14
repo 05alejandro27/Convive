@@ -30,15 +30,19 @@ export const formatDeadline = (deadline: string) => {
 
 //Función para decodificar el payload del JWT sin librerías externas
 export const decodeToken = (token: string) => {
-    const payload = token.split('.')[1];
-    const decoded = decodeURIComponent(
-        atob(payload)
-        //Convierte el base64 a bytes antes de interpretarlo como UTF-8
-            .split('')
-            .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-            .join('')
-    );
-    return JSON.parse(decoded);
+    try {
+        const payload = token.split('.')[1];
+        const decoded = decodeURIComponent(
+            atob(payload)
+            //Convierte el base64 a bytes antes de interpretarlo como UTF-8
+                .split('')
+                .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+                .join('')
+        );
+        return JSON.parse(decoded);
+    } catch {
+        return null;
+    }
 };
 
 export const monthLabel = (month: number) => {

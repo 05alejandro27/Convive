@@ -1,6 +1,7 @@
 package com.convive.backend.security;
 
 import com.convive.backend.model.entity.User;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -46,6 +47,17 @@ public class JwtService {
                 .signWith(getSignInKey())
                 //Construye el token y lo devuelve en una cadena compacta
                 .compact();
+    }
+
+    //Extrae todos los claims (datos) del token, validándolo con la clave secreta
+    public Claims extractAllClaims(String token) {
+        return Jwts.parser()
+                //Usa la clave secreta para verificar que el token no ha sido manipulado
+                .verifyWith(getSignInKey())
+                .build()
+                //Parsea el token firmado y obtiene el payload con los datos
+                .parseSignedClaims(token)
+                .getPayload();
     }
 
     //Es el metodo para firmar

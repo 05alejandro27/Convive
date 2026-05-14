@@ -37,15 +37,6 @@ public class ExpensesService {
                 .toList();
     }
 
-    public List<ExpenseResponse> getByMonth(Long budgetId, Integer month) {
-
-        List<Expense> expenses = expenseRepository.findByBudgetIdAndMonth(budgetId, month);
-
-        return expenses.stream()
-                .map(expenseMapper::toResponse)
-                .toList();
-    }
-
     @Transactional
     public ExpenseResponse createExpense(Long budgetId, ExpenseRequest expenseRequest) {
 

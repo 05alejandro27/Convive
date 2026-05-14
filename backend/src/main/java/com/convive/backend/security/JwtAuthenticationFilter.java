@@ -1,22 +1,17 @@
 package com.convive.backend.security;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import javax.crypto.SecretKey;
 import java.io.IOException;
 import java.util.List;
 
@@ -25,8 +20,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    @Value("${application.security.jwt.secret-key}")
-    private String secretKey;
+    //Inyecto JwtService para centralizar toda la lógica de JWT en un solo sitio
+    private final JwtService jwtService;
 
     @Override
     //Se ejecuta en cada petición HTTP que llega al backend
@@ -46,11 +41,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         try {
             //Decodifico y valido el token con la clave secreta
-            Claims claims = Jwts.parser()
-                    .verifyWith(getSignInKey())
-                    .build()
-                    .parseSignedClaims(token)
-                    .getPayload();
+            Claims claims = jwtService.extractAllClaims(token);
 
             //Saco el userId y el rol del payload (El payload es el conjunto útil de información) del token
             String userId = claims.getSubject();
@@ -74,11 +65,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         //Paso la petición al siguiente filtro de la cadena
         filterChain.doFilter(request, response);
-    }
-
-    //Decodifico la clave secreta en un formato válido para el algoritmo de firmado
-    private SecretKey getSignInKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
-        return Keys.hmacShaKeyFor(keyBytes);
     }
 }

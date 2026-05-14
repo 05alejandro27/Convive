@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { budgetService } from '../../services/budget.service';
 import styles from './Navbar.module.css';
 
 const getRole = (token: string) => {
@@ -38,7 +39,6 @@ export const Navbar = () => {
 
     const handleExpenses = async () => {
         try {
-            const { budgetService } = await import('../../services/budget.service');
             const budget = await budgetService.getCurrent(communityId);
             navigate(`/expenses/${communityId}/${budget.id}`);
         } catch {

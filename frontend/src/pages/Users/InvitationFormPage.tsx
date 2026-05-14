@@ -38,23 +38,25 @@ export const InvitationFormPage = () => {
 
     //Cargar los pisos vacíos de la comunidad
     useEffect(() => {
-        Promise.all([
-            apartmentService.findAll(Number(communityId)),
-            invitationService.findAll(Number(communityId))
-        ])
-            //Solo pisos activos y vacíos
-            .then(([apartmentsData, invitationsData]) => {
-                const empty = apartmentsData.filter(a => a.status === 'EMPTY');
+    const loadData = async () => {
+        try {
+            const apartmentsData = await apartmentService.findAll(Number(communityId));
+            const invitationsData = await invitationService.findAll(Number(communityId));
 
-                //Filtrar pisos que ya tienen invitación activa
-                const withoutInvitation = empty.filter(a =>
-                    !invitationsData.some(inv => inv.floor === a.floor && inv.door === a.door)
-                );
+            //Filtrar pisos que ya tienen invitación activa
+            const empty = apartmentsData.filter(a => a.status === 'EMPTY');
+            const withoutInvitation = empty.filter(a =>
+                !invitationsData.some(inv => inv.floor === a.floor && inv.door === a.door)
+            );
 
-                setApartments(withoutInvitation);
-            })
-            .catch(() => setGlobalError('Error al cargar los pisos'));
-    }, [communityId]);
+            setApartments(withoutInvitation);
+        } catch {
+            setGlobalError('Error al cargar los pisos');
+        }
+    };
+
+    loadData();
+}, [communityId]);
 
     //Plantas únicas disponibles
     const floors = [...new Set(apartments.map(a => a.floor))].sort((a, b) => a - b);

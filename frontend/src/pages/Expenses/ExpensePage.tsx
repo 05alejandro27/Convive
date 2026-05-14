@@ -21,7 +21,7 @@ export const ExpensesPage = () => {
     const [expenses, setExpenses] = useState<ExpenseResponse[]>([]);
     const [allExpenses, setAllExpenses] = useState<ExpenseResponse[]>([]);
     const [stats, setStats] = useState<BudgetStatsResponse | null>(null);
-    const [filterMonth, setFilterMonth] = useState<string>('');
+    const [filterMonth, setFilterMonth] = useState<string>(String(new Date().getMonth() + 1));
     const [filterType, setFilterType] = useState<string>('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);

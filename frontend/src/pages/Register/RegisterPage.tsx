@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import * as yup from 'yup';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { authService, type RegisterRequest } from '../../services/auth.service';
+import { authService } from '../../services/auth.service';
 import styles from './RegisterPage.module.css';
 
 const schema = yup.object({
@@ -20,7 +20,6 @@ const schema = yup.object({
         .required('El primer apellido es obligatorio'),
     lastName2: yup
         .string()
-        .nullable()
         .optional(),
     email: yup
         .string()
@@ -51,9 +50,8 @@ export const RegisterPage = () => {
         register,
         handleSubmit,
         formState: { errors, isSubmitting }
-    } = useForm<RegisterFormData>({
-        //Ver porque no me deja as any
-        resolver: yupResolver(schema) as never,
+    } = useForm({
+        resolver: yupResolver(schema),
         mode: 'onBlur'
     });
 
@@ -61,10 +59,16 @@ export const RegisterPage = () => {
         setGlobalError(null);
 
         try {
-            //Elimina confirmPassword para que no se envie a el método
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const { confirmPassword, ...registerData } = data;
-            await authService.register(Number(communityId), registerData as RegisterRequest);
+            const registerData = {
+                code: data.code,
+                firstName: data.firstName,
+                lastName1: data.lastName1,
+                lastName2: data.lastName2,
+                email: data.email,
+                phone: data.phone,
+                password: data.password
+            };
+            await authService.register(Number(communityId), registerData);
             alert('Registro completado correctamente');
             navigate(`/login/${communityId}`);
         } catch {

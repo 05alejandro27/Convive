@@ -24,12 +24,6 @@ public class ExpensesController {
         return ResponseEntity.ok(expensesService.getAll(budgetId));
     }
 
-    //GET
-    @GetMapping("/{budgetId}/month/{month}")
-    public ResponseEntity<List<ExpenseResponse>> getByMonth(@PathVariable Long budgetId, @PathVariable Integer month) {
-        return ResponseEntity.ok(expensesService.getByMonth(budgetId, month));
-    }
-
     //POST
     @PostMapping("/{budgetId}")
     public ResponseEntity<ExpenseResponse> create(@PathVariable Long budgetId, @Valid @RequestBody ExpenseRequest request) {

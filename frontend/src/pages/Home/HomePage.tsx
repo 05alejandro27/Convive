@@ -72,6 +72,7 @@ export const HomePage = () => {
 
     //Decodifico el rol del JWT
     const tokenData = decodeToken(user!.token);
+    const firstName = tokenData?.firstName ?? 'vecino';
 
     //Calculo las votaciones abiertas y pendientes de voto
     const openPolls = polls.filter((p) => p.status === 'OPEN');
@@ -87,7 +88,7 @@ export const HomePage = () => {
 
             {/*Cabecera de bienvenida*/}
             <div className={styles.welcome}>
-                Hola, {tokenData.firstName || 'vecino'}
+                Hola, {firstName}
             </div>
 
             {/*Tarjetas de resumen*/}

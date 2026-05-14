@@ -22,14 +22,13 @@ export const useAuthProvider = () => {
     const navigate = useNavigate();
 
     //Guarda quien esta logueado
-    const [user, setUser] = useState<AuthUser | null>(() => {
-        const token = localStorage.getItem('token');
-        const communityId = localStorage.getItem('communityId');
-        if (token && communityId) {
-            return { token, communityId: Number(communityId) };
-        }
-        return null;
-    });
+    const token = localStorage.getItem('token');
+    const communityId = localStorage.getItem('communityId');
+    const initialUser: AuthUser | null = token && communityId
+        ? { token, communityId: Number(communityId) }
+        : null;
+
+    const [user, setUser] = useState<AuthUser | null>(initialUser);
 
     //Esta función permite iniciar sesión
     const login = async (communityId: number, data: LoginData): Promise<void> => {
