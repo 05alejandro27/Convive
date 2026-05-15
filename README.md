@@ -20,15 +20,13 @@ cd convive
 
 ### 2. Configurar variables de entorno
 
-Edita el archivo `.env.example` con los siguientes valores:
+Crea el archivo `.env` con tus credenciales locales:
 ```
-DB_NAME=convive
-DB_USER=convive_user
-DB_PASSWORD=convive_pass
+DB_NAME=DB_NAME
+DB_USER=DB_USER
+DB_PASSWORD=DB_PASSWORD
 DB_PORT=5433
 ```
-
-Después renómbralo a `.env`.
 
 ### 3. Levantar la base de datos
 
@@ -42,32 +40,53 @@ Para comprobar que funciona:
 docker ps
 ```
 
-### 4. Arrancar el backend
+### 4. Configurar el backend
 
-Desde tu IDE o desde la carpeta `/convive/backend`:
-```bash
-mvn spring-boot:run
+Crea el archivo `backend/src/main/resources/application-dev.properties` con el siguiente contenido:
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5433/DB_NAME
+spring.datasource.username=DB_USER
+spring.datasource.password=DB_PASSWORD
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+application.security.jwt.secret-key=TU_SECRET_KEY
+application.security.jwt.expiration=86400000
+app.cors.allowed-origins=http://localhost:5173
 ```
 
-### 5. Arrancar el frontend
+Para generar la secret key ejecuta:
 
-Desde tu IDE o desde la carpeta `/convive/frontend`:
+```bash
+openssl rand -hex 32
+```
+
+### 5. Arrancar el backend
+
+Desde tu IDE con perfil dev o desde la carpeta `/backend`:
+```bash
+./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
+```
+
+### 6. Arrancar el frontend
+
+Desde tu IDE o desde la carpeta `/frontend`:
 ```bash
 npm install
 npm run dev
 ```
 
-### 6. Abrir la aplicación web
+### 7. Abrir la aplicación web
 
 Accede desde tu navegador a **http://localhost:5173**
 
-### 7. Datos de prueba
+### 8. Datos de prueba
 
 | Planta | Puerta | Contraseña |
 |--------|--------|------------|
 | 1      | A      | password123 |
 
-### 8. Borrar la base de datos
+### 9. Borrar la base de datos
 
 Desde la carpeta `/convive`:
 ```bash
