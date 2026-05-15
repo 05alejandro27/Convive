@@ -9,7 +9,6 @@ import com.convive.backend.model.entity.Budget;
 import com.convive.backend.model.entity.Expense;
 import com.convive.backend.model.enums.Status;
 import com.convive.backend.repository.BudgetRepository;
-import com.convive.backend.repository.CommunityRepository;
 import com.convive.backend.repository.ExpensesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,6 @@ public class ExpensesService {
 
     private final ExpensesRepository expenseRepository;
     private final ExpensesMapper expenseMapper;
-    private final CommunityRepository communityRepository;
     private final BudgetRepository budgetRepository;
 
     public List<ExpenseResponse> getAll(Long budgetId) {
@@ -106,15 +104,6 @@ public class ExpensesService {
     public BigDecimal calculateTotalExpenses(Long budgetId) {
 
         List<Expense> expenses = expenseRepository.findByBudgetId(budgetId);
-
-        return expenses.stream()
-                .map(Expense::getCost)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-    }
-
-    public BigDecimal calculateMonthExpenses(Long budgetId, Integer month) {
-
-        List<Expense> expenses = expenseRepository.findByBudgetIdAndMonth(budgetId, month);
 
         return expenses.stream()
                 .map(Expense::getCost)

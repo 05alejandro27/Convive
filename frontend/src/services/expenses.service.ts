@@ -7,13 +7,6 @@ export const expenseService = {
         return response.data;
     },
 
-    findByMonth: async (budgetId: number, month: number): Promise<ExpenseResponse[]> => {
-        const response = await api.get<ExpenseResponse[]>(
-            `/expenses/${budgetId}/month/${month}`
-        );
-        return response.data;
-    },
-
     create: async (budgetId: number, data: ExpenseRequest): Promise<ExpenseResponse> => {
         const response = await api.post<ExpenseResponse>(
             `/expenses/${budgetId}`,

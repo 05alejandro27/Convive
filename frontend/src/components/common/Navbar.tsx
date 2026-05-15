@@ -1,37 +1,25 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { budgetService } from '../../services/budget.service';
+import { decodeToken } from '../../utils/formatters';
 import styles from './Navbar.module.css';
-
-const getRole = (token: string) => {
-    try {
-        const payload = JSON.parse(atob(token.split('.')[1]));
-        return payload.role as string;
-    } catch {
-        return null;
-    }
-};
-
-const getCommunityId = (token: string) => {
-    try {
-        const payload = JSON.parse(atob(token.split('.')[1]));
-        return payload.communityId as number;
-    } catch {
-        return null;
-    }
-};
 
 export const Navbar = () => {
     const { user, logout } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
 
-    if (!user || !user.token) return null;
+    if (!user || !user.token) {
+        return null;
+    }
 
-    const role = getRole(user.token);
-    const communityId = getCommunityId(user.token);
+    const tokenData = decodeToken(user.token);
+    const role = tokenData?.role as string | null;
+    const communityId = tokenData?.communityId as number | null;
 
-    if (!role || !communityId) return null;
+    if (!role || !communityId) {
+        return null;
+    }
 
     const isPresident = role === 'PRESIDENT';
 

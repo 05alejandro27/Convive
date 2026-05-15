@@ -25,7 +25,7 @@ import { PollFormPage } from './pages/Polls/PollFormPage';
 function App() {
     return (
         <Routes>
-            {/**Redirijo al login de la comunidad 1 por defecto PRUEBA*/}
+            {/**Redirijo al login de la comunidad 1 por defecto*/}
             <Route path="/" element={<Navigate to="/login/1" replace />}/>
             {/**Redirijo al login de la comunidad seleccionada*/}
             <Route path="/login/:communityId" element={<LoginPage/>}/>
@@ -42,10 +42,8 @@ function App() {
                 <Route path="/home/:communityId" element={<HomePage/>}/>
                 <Route path="/budget/:communityId/current" element={<BudgetCurrentPage/>}/>
                 <Route path="/budget/:communityId/history" element={<BudgetHistoryPage/>}/>
-                <Route path="/budget/:communityId/create" element={<BudgetFormPage/>}/>
                 <Route path="/budget/:communityId/:budgetId" element={<BudgetDetailPage/>}/>
                 <Route path="/expenses/:communityId/:budgetId" element={<ExpensesPage/>}/>
-                <Route path="/polls/:communityId/create" element={<PollFormPage/>}/>
                 <Route path="/polls/:communityId" element={<PollsPage/>}/>
                 <Route path="/polls/:communityId/:pollId" element={<PollDetailPage/>}/>
 
@@ -57,8 +55,10 @@ function App() {
                     <Route path="/users/:communityId" element={<UsersPage/>}/>
                     <Route path="/users/:communityId/edit/:id" element={<UserFormPage/>}/>
                     <Route path="/users/:communityId/invite" element={<InvitationFormPage/>}/>
+                    <Route path="/budget/:communityId/create" element={<BudgetFormPage/>}/>
                     <Route path="/expenses/:communityId/:budgetId/create" element={<ExpenseFormPage/>}/>
                     <Route path="/expenses/:communityId/:budgetId/edit/:id" element={<ExpenseFormPage/>}/>
+                    <Route path="/polls/:communityId/create" element={<PollFormPage/>}/>
                 </Route>
             </Route>
 

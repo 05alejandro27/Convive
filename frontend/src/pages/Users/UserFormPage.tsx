@@ -89,7 +89,9 @@ export const UserFormPage = () => {
         }
     };
 
-    if (loading) return <p className={styles.loading}>Cargando...</p>;
+    if (loading) {
+        return <p className={styles.loading}>Cargando...</p>;
+    }
 
     return (
         <div className={styles.container}>

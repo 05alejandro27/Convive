@@ -11,7 +11,7 @@ import com.convive.backend.model.entity.UserApartment;
 import com.convive.backend.model.entity.Vote;
 import com.convive.backend.model.enums.Status;
 import com.convive.backend.repository.*;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

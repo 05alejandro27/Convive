@@ -13,7 +13,7 @@ import com.convive.backend.repository.InvitationRepository;
 import com.convive.backend.repository.UserApartmentRepository;
 import com.convive.backend.repository.UserRepository;
 import com.convive.backend.security.JwtService;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -107,7 +107,7 @@ export const HomePage = () => {
                     <span className={styles.statSub}>
                         {budgetStats ? `${budgetStats.spentPercentage}% ejecutado` : 'Sin presupuesto activo'}
                     </span>
-                    <span className={styles.statLink}>Ver presupuesto →</span>
+                    <span className={styles.statLink}>Ver presupuesto</span>
                 </div>
 
                 <div className={styles.statCard} onClick={() => budget && navigate(`/expenses/${communityId}/${budget.id}`)}>
@@ -118,7 +118,7 @@ export const HomePage = () => {
                     <span className={styles.statSub}>
                         {budget ? `${monthExpenses.length} gastos registrados` : 'Sin presupuesto activo'}
                     </span>
-                    <span className={styles.statLink}>Ver gastos →</span>
+                    <span className={styles.statLink}>Ver gastos</span>
                 </div>
 
                 <div className={styles.statCard} onClick={() => navigate(`/polls/${communityId}`)}>
@@ -127,7 +127,7 @@ export const HomePage = () => {
                     <span className={styles.statSub}>
                         {pendingVotes > 0 ? `${pendingVotes} pendiente tu voto` : 'Todo votado'}
                     </span>
-                    <span className={styles.statLink}>Ver votaciones →</span>
+                    <span className={styles.statLink}>Ver votaciones</span>
                 </div>
             </div>
 
@@ -136,7 +136,7 @@ export const HomePage = () => {
                 <div className={styles.sectionHeader}>
                     <h2 className={styles.sectionTitle}>Votaciones recientes</h2>
                     <button className={styles.sectionLink} onClick={() => navigate(`/polls/${communityId}`)}>
-                        Ver todas →
+                        Ver todas
                     </button>
                 </div>
 
@@ -173,7 +173,7 @@ export const HomePage = () => {
                     <h2 className={styles.sectionTitle}>Últimos gastos</h2>
                     {budget && (
                         <button className={styles.sectionLink} onClick={() => navigate(`/expenses/${communityId}/${budget.id}`)}>
-                            Ver todos →
+                            Ver todos
                         </button>
                     )}
                 </div>

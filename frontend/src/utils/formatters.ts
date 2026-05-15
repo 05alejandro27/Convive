@@ -51,7 +51,13 @@ export const monthLabel = (month: number) => {
 };
 
 export const voteLabel = (value: string) => {
-    if (value === 'IN_FAVOR') return 'A favor';
-    if (value === 'AGAINST') return 'En contra';
+    if (value === 'IN_FAVOR') {
+        return 'A favor';
+    }
+    
+    if (value === 'AGAINST') {
+        return 'En contra';
+    }
+
     return 'Abstención';
 };

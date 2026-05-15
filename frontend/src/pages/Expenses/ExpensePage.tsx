@@ -8,8 +8,8 @@ import { ExpenseFilters } from '../Budget/components/ExpenseFilters';
 import { ExpenseTable } from './components/ExpenseTable';
 import { BudgetStats } from '../Budget/components/BudgetStats';
 import { getRole } from '../../utils/getRole';
-import styles from './ExpensesPage.module.css';
 import { formatMoney } from '../../utils/formatters';
+import styles from './ExpensesPage.module.css';
 
 const MONTH_NAMES = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 

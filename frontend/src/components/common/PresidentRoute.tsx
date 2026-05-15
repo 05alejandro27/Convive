@@ -1,12 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-
-//Función para decodificar el payload del JWT sin librerías externas
-const decodeToken = (token: string) => {
-    const payload = token.split('.')[1];
-    const decoded = atob(payload);
-    return JSON.parse(decoded);
-};
+import { decodeToken } from '../../utils/formatters';
 
 export const PresidentRoute = () => {
     //Datos del usuario

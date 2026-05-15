@@ -72,8 +72,7 @@ export const RegisterPage = () => {
             alert('Registro completado correctamente');
             navigate(`/login/${communityId}`);
         } catch {
-            //Mejorar el comentario
-            setGlobalError('Fallo en el registro');
+            setGlobalError('Código incorrecto, ya utilizado o caducado');
         }
     };
 
