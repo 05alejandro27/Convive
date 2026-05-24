@@ -9,9 +9,9 @@ import styles from './RegisterPage.module.css';
 const schema = yup.object({
     code: yup
         .string()
+        .required('El código es obligatorio')
         .min(8, 'El código de invitación debe tener 8 carácteres')
-        .max(8, 'El código de invitación debe tener 8 carácteres')
-        .required(),
+        .max(8, 'El código de invitación debe tener 8 carácteres'),
     firstName: yup
         .string()
         .required('El nombre es obligatorio'),
@@ -23,19 +23,19 @@ const schema = yup.object({
         .optional(),
     email: yup
         .string()
-        .email('El formato del correo no es correcto')
-        .required('El correo es obligatorio'),
+        .required('El correo es obligatorio')
+        .email('El formato del correo no es correcto'),
     phone: yup
         .string()
         .required('El teléfono es obligatorio'),
     password: yup
         .string()
-        .min(8, 'La contraseña debe tener mínimo 8 caracteres')
-        .required('La contraseña es obligatoria'),
+        .required('La contraseña es obligatoria')
+        .min(8, 'La contraseña debe tener mínimo 8 caracteres'),
     confirmPassword: yup
         .string()
-        .min(8, 'La contraseña debe tener mínimo 8 caracteres')
         .required('La confirmación de contraseña es obligatoria')
+        .min(8, 'La contraseña debe tener mínimo 8 caracteres')
         .oneOf([yup.ref('password')], 'Las contraseñas no coinciden')
 }).required();
 

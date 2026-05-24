@@ -20,7 +20,7 @@ const schema = yup.object({
 }).required();
 
 export const ApartmentFormPage = () => {
-    const { communityId, id } = useParams<{ communityId: string; id: string }>();
+    const { communityId, id } = useParams<{communityId: string; id: string}>();
     const navigate = useNavigate();
 
     //Si hay id en la URL, estamos editando, si no, creando
@@ -163,11 +163,8 @@ export const ApartmentFormPage = () => {
                             className={styles.btnSubmit}
                             disabled={isSubmitting}
                         >
-                            {isSubmitting
-                                ? 'Guardando...'
-                                : isEditing
-                                ? 'Guardar cambios'
-                                : 'Crear piso'}
+                            {isSubmitting ? 'Guardando...' : 
+                                isEditing ? 'Guardar cambios' : 'Crear piso'}
                         </button>
                     </div>
                 </form>

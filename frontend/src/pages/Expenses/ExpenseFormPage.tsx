@@ -240,11 +240,8 @@ export const ExpenseFormPage = () => {
                             className={styles.btnSubmit}
                             disabled={isSubmitting}
                         >
-                            {isSubmitting
-                                ? 'Guardando...'
-                                : isEditing
-                                ? 'Guardar cambios'
-                                : 'Crear gasto'}
+                            {isSubmitting ? 'Guardando...' : 
+                                isEditing ? 'Guardar cambios': 'Crear gasto'}
                         </button>
                     </div>
                 </form>

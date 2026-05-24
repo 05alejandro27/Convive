@@ -17,8 +17,8 @@ const schema = yup.object({
         .required('La puerta es obligatoria'),
     password: yup
         .string()
-        .min(8, 'La contraseña debe tener mínimo 8 caracteres')
-        .required('La contraseña es obligatoria'),
+        .required('La contraseña es obligatoria')
+        .min(8, 'La contraseña debe tener mínimo 8 caracteres'),
 }).required();
 
 export const LoginPage = () => {
