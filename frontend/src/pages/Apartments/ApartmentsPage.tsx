@@ -26,7 +26,6 @@ export const ApartmentsPage = () => {
     const [filterTenant, setFilterTenant] = useState('');
     const [filterStatus, setFilterStatus] = useState('');
 
-
     //Cargar al montar y cuando cambian los filtros
     useEffect(() => {
         const loadData = async () => {
@@ -37,7 +36,7 @@ export const ApartmentsPage = () => {
                 const apartmentsData = await apartmentService.findAll(id); //Sin filtros
                 const statsData = await apartmentService.getStats(id);
                 setAllApartments(apartmentsData); //Guardo el array completo
-                setApartments(apartmentsData);    //También el que se muestra
+                setApartments(apartmentsData); //También el que se muestra
                 
                 setStats(statsData);
 

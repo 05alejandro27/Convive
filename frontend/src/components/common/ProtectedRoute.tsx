@@ -7,7 +7,7 @@ export const ProtectedRoute = () => {
     //Datos del usuario
     const { user } = useAuth();
     //Datos de la comunidad de la URL
-    const { communityId } = useParams<{ communityId: string }>();
+    const { communityId } = useParams<{communityId: string}>();
 
     //Comprueba si el usuario no existe o no tiene clave
     if (!user || !user.token) {

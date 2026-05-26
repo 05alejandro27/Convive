@@ -216,11 +216,8 @@ export const UserFormPage = () => {
                             className={styles.btnSubmit}
                             disabled={isSubmitting}
                         >
-                            {isSubmitting
-                                ? 'Guardando...'
-                                : isEditing
-                                ? 'Guardar cambios'
-                                : 'Crear usuario'}
+                            {isSubmitting ? 'Guardando...' :
+                                isEditing ? 'Guardar cambios' : 'Crear usuario'}
                         </button>
                     </div>
                 </form>

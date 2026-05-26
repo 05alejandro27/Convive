@@ -125,7 +125,7 @@ public class BudgetService {
         Budget budget = budgetRepository.findByCommunityIdAndStatus(communityId, Status.OPEN)
                 .orElseThrow(() -> new ResourceNotFoundException("No hay presupuesto activo"));
 
-        //Días restantes
+        //Días restantes (Se calcula la diferencia de días entre hoy y la fecha de fin)
         long remainingDays = java.time.temporal.ChronoUnit.DAYS.between(LocalDate.now(), budget.getEndDate());
 
         //Si la fecha ya ha pasado lo dejamos en 0 para que no salga negativo

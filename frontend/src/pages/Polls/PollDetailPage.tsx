@@ -81,7 +81,7 @@ export const PollDetailPage = () => {
 
                 <div className={styles.meta}>
                     <span>Creada por: {poll.creatorName}</span>
-                    <span>Deadline: {formatDeadline(poll.deadline)}</span>
+                    <span>Fecha límite: {formatDeadline(poll.deadline)}</span>
                     <span>{poll.totalVotes} votos registrados</span>
                 </div>
 

@@ -42,6 +42,7 @@ export const PollsPage = () => {
 
     return (
         <div className={styles.container}>
+
             <div className={styles.header}>
                 <h1 className={styles.title}>Votaciones</h1>
                 {isPresident && (
@@ -59,7 +60,7 @@ export const PollsPage = () => {
             {polls.length === 0 && (
                 <p className={styles.empty}>No hay votaciones en esta comunidad.</p>
             )}
-
+            
             {openPolls.length > 0 && (
                 <div className={styles.section}>
                     {openPolls.map((poll) => (

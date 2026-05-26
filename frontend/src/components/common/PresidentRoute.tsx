@@ -8,7 +8,7 @@ export const PresidentRoute = () => {
 
     //Si no hay usuario se redirige al login (esto ya lo cubre ProtectedRoute, pero por seguridad)
     if (!user || !user.token) {
-        return <Navigate to={`/login/${user?.communityId || '1'}`} replace />;
+        return <Navigate to={`/login/${user?.communityId || '1'}`} replace/>;
     }
 
     //Decodifico el JWT para obtener el rol
@@ -16,9 +16,9 @@ export const PresidentRoute = () => {
 
     //Si no es presidente, redirige a not-found
     if (tokenData.role !== 'PRESIDENT') {
-        return <Navigate to="/not-found" replace />;
+        return <Navigate to="/not-found" replace/>;
     }
 
     //Si es presidente, muestra el contenido
-    return <Outlet />;
+    return <Outlet/>;
 };

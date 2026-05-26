@@ -11,7 +11,7 @@ import styles from './HomePage.module.css';
 import { decodeToken, formatMoney, formatDate, monthLabel } from '../../utils/formatters';
 
 export const HomePage = () => {
-    const { communityId } = useParams<{ communityId: string }>();
+    const { communityId } = useParams<{communityId: string}>();
     const { user } = useAuth();
     const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ export const HomePage = () => {
     const [budgetStats, setBudgetStats] = useState<BudgetStatsResponse | null>(null);
 
     //Estado de los gastos
-    const [recentExpenses, setRecentExpenses] = useState<ExpenseResponse[]>([]);
+    const [allExpenses, setAllExpenses] = useState<ExpenseResponse[]>([]);
 
     //Estado de las votaciones
     const [polls, setPolls] = useState<PollResponse[]>([]);
@@ -46,7 +46,7 @@ export const HomePage = () => {
 
                     //Cargo los últimos gastos del presupuesto activo
                     const expensesData = await expenseService.findAll(budgetData.id);
-                    setRecentExpenses(expensesData.slice(0, 3));
+                    setAllExpenses(expensesData);
                 } catch {
                     //No hay presupuesto activo, no es un error
                 }
@@ -54,7 +54,7 @@ export const HomePage = () => {
                 //Cargo las votaciones
                 try {
                     const pollsData = await pollService.findAll(id);
-                    setPolls(pollsData.slice(0, 3));
+                    setPolls(pollsData);
                 } catch {
                     //No hay votaciones, no es un error
                 }
@@ -86,8 +86,15 @@ export const HomePage = () => {
 
     //Calculo los gastos del mes actual
     const currentMonth = new Date().getMonth() + 1;
-    const monthExpenses = recentExpenses.filter((e) => e.month === currentMonth);
+    const monthExpenses = allExpenses.filter((e) => e.month === currentMonth);
     const monthTotal = monthExpenses.reduce((sum, e) => sum + e.cost, 0);
+
+    //Calculo los gastos recientes
+    const recentExpenses = [...allExpenses].sort((a, b) => new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime())
+        .slice(0, 3);
+
+    //Calculo las votaciones recientes
+    const recentPolls = polls.slice(0, 3);
 
     return (
         <div className={styles.container}>
@@ -140,10 +147,10 @@ export const HomePage = () => {
                     </button>
                 </div>
 
-                {polls.length === 0 ? (
+                {recentPolls.length === 0 ? (
                     <p className={styles.empty}>No hay votaciones registradas.</p>
                 ) : (
-                    polls.map((poll) => (
+                    recentPolls.map((poll) => (
                         <div key={poll.id} className={styles.listItem} onClick={() => navigate(`/polls/${communityId}/${poll.id}`)}>
                             <div className={styles.listItemInfo}>
                                 <span className={styles.listItemTitle}>{poll.title}</span>
@@ -186,7 +193,7 @@ export const HomePage = () => {
                             <div className={styles.listItemInfo}>
                                 <span className={styles.listItemTitle}>{expense.name}</span>
                                 <span className={styles.listItemSub}>
-                                    {monthLabel(expense.month)} · {expense.expenseType === 'FIXED' ? 'FIJO' : 'VARIABLE'}
+                                    {monthLabel(expense.month)} · {expense.expenseType === 'FIXED' ? 'Fijo' : 'Variable'}
                                 </span>
                             </div>
                             <div className={styles.listItemRight}>

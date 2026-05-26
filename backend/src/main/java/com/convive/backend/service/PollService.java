@@ -49,7 +49,7 @@ public class PollService {
         List<Poll> polls = pollRepository.findAllByCommunityId(communityId);
 
         //Cierro la votación si se ha pasado la fecha límite
-        for (Poll poll : polls) {
+        for (Poll poll: polls) {
             closeIfExpired(poll);
         }
 

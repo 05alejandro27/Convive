@@ -29,7 +29,7 @@ const schema = yup.object({
 }).required();
 
 export const BudgetFormPage = () => {
-    const { communityId } = useParams<{ communityId: string }>();
+    const { communityId } = useParams<{communityId: string}>();
     const navigate = useNavigate();
 
     const [globalError, setGlobalError] = useState<string | null>(null);

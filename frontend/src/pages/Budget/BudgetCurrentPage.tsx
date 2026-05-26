@@ -10,7 +10,7 @@ import styles from './BudgetPage.module.css';
 import { formatDate, formatMoney, monthLabel } from '../../utils/formatters';
 
 export const BudgetCurrentPage = () => {
-    const { communityId } = useParams<{ communityId: string }>();
+    const { communityId } = useParams<{communityId: string}>();
     const navigate = useNavigate();
 
     const [budget, setBudget] = useState<BudgetResponse | null>(null);
@@ -108,6 +108,9 @@ export const BudgetCurrentPage = () => {
         );
     }
 
+    //Calculo los gastos recientes
+    const recentExpenses = [...expenses].sort((a, b) => new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime()).slice(0, 5);
+
     return (
         <div className={styles.container}>
             <div className={styles.header}>
@@ -159,7 +162,7 @@ export const BudgetCurrentPage = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {expenses.slice(0, 5).map((expense) => (
+                    {recentExpenses.slice(0, 5).map((expense) => (
                         <tr key={expense.id}>
                             <td>{expense.name}</td>
                             <td>
@@ -179,7 +182,7 @@ export const BudgetCurrentPage = () => {
                             )}
                         </tr>
                     ))}
-                    {expenses.length === 0 && (
+                    {recentExpenses.length === 0 && (
                         <tr>
                             <td colSpan={isPresident ? 5 : 4} className={styles.empty}>No hay gastos registrados.</td>
                         </tr>
@@ -187,7 +190,7 @@ export const BudgetCurrentPage = () => {
                 </tbody>
             </table>
 
-            {expenses.length > 0 && (
+            {recentExpenses.length > 0 && (
                 <button
                     className={styles.linkHistory}
                     onClick={() => navigate(`/expenses/${communityId}/${budget!.id}`)}

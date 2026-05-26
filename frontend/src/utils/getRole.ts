@@ -11,4 +11,5 @@ export const getRole = (): string | null => {
         //El token puede estar malformado por lo que se ignora queriendo
         return null;
     }
+
 }; 
